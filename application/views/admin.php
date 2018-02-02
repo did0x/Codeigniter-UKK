@@ -49,7 +49,7 @@
         <nav class="bg-white sidebar sidebar-offcanvas" id="sidebar">
           <div class="user-info">
             <img src="<?php echo base_url('assets/admin/');?>images/face.jpg" alt="">
-            <p class="name">Richard V.Welsh</p>
+            <p class="name"></p>
             <p class="designation">Manager</p>
             <span class="online"></span>
           </div>
@@ -61,13 +61,13 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?php echo site_url('admin/table');?>">
+              <a class="nav-link" href="<?php echo site_url('admin/table_user');?>">
                 <img src="<?php echo base_url('assets/admin/');?>images/icons/5.png" alt="">
                 <span class="menu-title">User</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pages/charts/index.html">
+              <a class="nav-link" href="<?php echo site_url('admin/table_transportation');?>">
                 <img src="<?php echo base_url('assets/admin/');?>images/icons/6.png" alt="">
                 <span class="menu-title">Transportation</span>
               </a>
@@ -85,9 +85,9 @@
               </a>
             </li>            
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="<?php echo site_url('login/logout');?>">
                 <img src="<?php echo base_url('assets/admin/');?>images/icons/10.png" alt="">
-                <span class="menu-title">Settings</span>
+                <span class="menu-title">Log out</span>
               </a>
             </li>
           </ul>

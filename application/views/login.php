@@ -20,12 +20,13 @@
           <div class="card col-lg-4 mx-auto">
             <div class="card-body px-5 py-5">
               <h3 class="card-title text-left mb-3">Login</h3>
-              <form>
+              <p class="font-weight-normal text-danger"><?php echo $msg; ?></p>
+              <form action="<?php echo base_url();?>index.php/login/login" method="post"">
                 <div class="form-group">
-                  <input type="text" class="form-control p_input" placeholder="Username">
+                  <input type="text" class="form-control p_input" name="username" placeholder="Username" autofocus="autofocus">
                 </div>
                 <div class="form-group">
-                  <input type="text" class="form-control p_input" placeholder="Password">
+                  <input type="password" class="form-control p_input" name="password" placeholder="Password">
                 </div>
                 <div class="form-group d-flex align-items-center justify-content-between">
                   <div class="form-check"><label><input type="checkbox" class="form-check-input">Remember me</label></div>

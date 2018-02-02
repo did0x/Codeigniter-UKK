@@ -10,11 +10,6 @@
   <link rel="stylesheet" href="<?php echo base_url('assets/admin/');?>node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css" />
   <link rel="stylesheet" href="<?php echo base_url('assets/admin/');?>css/style.css" />
   <link rel="shortcut icon" href="<?php echo base_url('assets/admin/');?>images/favicon.png" />
-  <style type="text/css">
-    a , a:hover{
-      color:white;
-    }
-  </style>
 </head>
 
 <body>
@@ -59,13 +54,13 @@
           </div>
           <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link" href="<?php echo site_url('admin');?>">
+              <a class="nav-link" href="index.html">
                 <img src="<?php echo base_url('assets/admin/');?>images/icons/1.png" alt="">
                 <span class="menu-title">Dashboard</span>
               </a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="<?php echo site_url('admin/table');?>">
+              <a class="nav-link" href="<?php echo site_url('admin/table_user');?>">
                 <img src="<?php echo base_url('assets/admin/');?>images/icons/5.png" alt="">
                 <span class="menu-title">User</span>
               </a>
@@ -89,9 +84,9 @@
               </a>
             </li>            
             <li class="nav-item">
-              <a class="nav-link" href="#">
+              <a class="nav-link" href="<?php echo site_url('login/logout');?>">
                 <img src="<?php echo base_url('assets/admin/');?>images/icons/10.png" alt="">
-                <span class="menu-title">Settings</span>
+                <span class="menu-title">Log out</span>
               </a>
             </li>
           </ul>
@@ -99,63 +94,57 @@
 
         <!-- partial -->
         <div class="content-wrapper">
-          <h3 class="page-heading mb-4">Tables User</h3>
+          <h3 class="page-heading mb-4">Forms</h3>
           <div class="row mb-2">
             <div class="col-lg-12">
               <div class="card">
                 <div class="card-body">
-                  <div class="card-title mb-4">
-                    <h5>Tambah Data 
-                      <button type="button" class="btn btn-primary btn-sm">
-                        <?php echo anchor('admin/form/','Add');?>
-                      </button> 
-                    </h5>
-                  </div>
-                  <div class="table-responsive">
-                    <table class="table center-aligned-table">
-                      <thead>
-                        <tr class="text-primary">
-                          <th>No</th>
-                          <th>Fullname</th>
-                          <th>Username</th>
-                          <th>Password</th>
-                          <th>Level</th>
-                          <th></th>
-                          <th></th> 
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <?php 
-                          $no = 1;
-                          foreach($user as $u) {  
-                        ?>
-                        <tr class="">
-                          <td><?php echo $no++ ?></td> 
-                          <td><?php echo $u->fullname ?></td>
-                          <td><?php echo $u->username ?></td>
-                          <td><?php echo $u->password ?></td>
-                          <td><?php echo $u->level ?></td>
-                          <td>
-                            <button type="button" class="btn btn-primary btn-sm" >
-                              <?php echo anchor('admin/edit_form/'.$u->id,'Manage');?>
-                            </button>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-danger btn-sm" >
-                              <?php echo anchor('crud/delete/'.$u->id,'Remove');?>
-                            </button>
-                          </td>
-                        </tr>
-                        <?php } ?>
-                      </tbody>
-                    </table>
-                  </div>
+                  <h5 class="card-title mb-4">Add user</h5>
+                  <?php if ($user != 0) {
+                      foreach ($user as $u ) { 
+                        $id       = $u->id;                  
+                        $fullname = $u->fullname;
+                        $username = $u->username;
+                        $password = $u->password;
+                        $level    = $u->level;
+                      }
+                    } else {
+                        $id = null;
+                        $fullname = null;
+                        $username = null;
+                        $password = null;
+                        $level    = null;
+                    }
+                  ?>
+                  <form class="forms-sample" action="<?php echo base_url();?>/index.php/crud/add_user" method='post'>
+                    <div class="form-group">
+                      <input type="hidden" class="form-control p-input" name="id" id="id" aria-describedby="fullnameHelp" placeholder="Enter Fullname" value="<?php echo $id?>">
+                      <label for="username">Username</label>
+                      <input type="text" class="form-control p-input" name="username" id="username" aria-describedby="usernameHelp" placeholder="Enter username" value="<?php echo $username?>">
+                    </div>
+                    <div class="form-group">
+                      <label for="password">Password</label>
+                      <input type="password" class="form-control p-input" name="password" id="password" placeholder="Password" value="<?php echo $password?>">
+                    </div>
+                    <div class="form-group">
+                      <label for="fullname">Fullname</label>
+                      <input type="text" class="form-control p-input" name="fullname" id="fullname" aria-describedby="fullnameHelp" placeholder="Enter Fullname" value="<?php echo $fullname?>">
+                    </div>
+                    <div class="form-group">
+                      <label for="level">Level</label>
+                      <input type="text" class="form-control p-input" name="level" id="level" aria-describedby="levelHelp" placeholder="Enter Level" value="<?php echo $level?>">
+                    </div>
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <!-- partial:../../partials/_footer.html -->
+
         <footer class="footer">
           <div class="container-fluid clearfix">
             <span class="float-right">
@@ -163,6 +152,7 @@
             </span>
           </div>
         </footer>
+
 
         <!-- partial -->
       </div>
@@ -173,7 +163,7 @@
   <script src="<?php echo base_url('assets/admin/');?>node_modules/jquery/dist/jquery.min.js"></script>
   <script src="<?php echo base_url('assets/admin/');?>node_modules/popper.js/dist/umd/popper.min.js"></script>
   <script src="<?php echo base_url('assets/admin/');?>node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="<?php echo base_url('assets/admin/');?>node_modules/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.min.js"></script>
+  <script src="<?php echo base_url('assets/admin/');?>/node_modules/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.min.js"></script>
   <script src="<?php echo base_url('assets/admin/');?>js/off-canvas.js"></script>
   <script src="<?php echo base_url('assets/admin/');?>js/hoverable-collapse.js"></script>
   <script src="<?php echo base_url('assets/admin/');?>js/misc.js"></script>

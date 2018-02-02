@@ -6,7 +6,7 @@ class Crud extends CI_Controller {
 	function __construct(){
 		parent::__construct();		
 
-		$this->load->model('m_data');
+		$this->load->model('m_user');
         $this->load->helper('url');
 	}
 
@@ -17,23 +17,7 @@ class Crud extends CI_Controller {
 		// var_dump($data);
 	}
 
-	public function add(){
-		$fullname= $this->input->post('fullname');
-		$username= $this->input->post('username');
-		$password = $this->input->post('password');
-		$level = $this->input->post('level');
-
-		$data = array(
-			'fullname' => $fullname,
-			'username' => $username,
-			'password' => $password,
-			'level' => $level
-			);
-		$this->m_data->input_data($data,'user');
-		redirect('admin/table'); //Balikin ke controller admin function index
-	}
-
-	public function update(){
+	public function add_user(){
 		$id = $this->input->post('id');
 		$fullname= $this->input->post('fullname');
 		$username= $this->input->post('username');
@@ -50,14 +34,25 @@ class Crud extends CI_Controller {
 		$where = array(
 			'id' => $id
 			);
-		$this->m_data->update_data($where,$data,'user');
-		redirect('admin/table');
+
+		if ($id == 0) {
+			//Add Data
+			$this->m_user->input_data($data,'user');
+			redirect('admin/table_user');
+		} else {
+			//Update Data
+			$this->m_user->update_data($where,$data,'user');
+			redirect('admin/table_user');
+		}
+
+
 	}
 
-	public function delete($id){
+
+	public function delete_user($id){
 		$where = array('id' => $id);
-		$this->m_data->hapus_data($where,'user');
-		redirect('admin/table');
+		$this->m_user->hapus_data($where,'user');
+		redirect('admin/table_user');
 	}
 
 
