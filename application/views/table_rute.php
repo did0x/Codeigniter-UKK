@@ -10,6 +10,11 @@
   <link rel="stylesheet" href="<?php echo base_url('assets/admin/');?>node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css" />
   <link rel="stylesheet" href="<?php echo base_url('assets/admin/');?>css/style.css" />
   <link rel="shortcut icon" href="<?php echo base_url('assets/admin/');?>images/favicon.png" />
+  <style type="text/css">
+    a , a:hover{
+      color:white;
+    }
+  </style>
 </head>
 
 <body>
@@ -59,7 +64,7 @@
                 <span class="menu-title">Dashboard</span>
               </a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="<?php echo site_url('admin/table_user');?>">
                 <img src="<?php echo base_url('assets/admin/');?>images/icons/5.png" alt="">
                 <span class="menu-title">User</span>
@@ -71,7 +76,7 @@
                 <span class="menu-title">Transportation</span>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href="<?php echo site_url('admin/table_rute');?>">
                 <img src="<?php echo base_url('assets/admin/');?>images/icons/7.png" alt="">
                 <span class="menu-title">Rute</span>
@@ -94,51 +99,69 @@
 
         <!-- partial -->
         <div class="content-wrapper">
-          <h3 class="page-heading mb-4">Forms</h3>
+          <h3 class="page-heading mb-4">Tables Rute</h3>
           <div class="row mb-2">
             <div class="col-lg-12">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title mb-4">Add Transportation</h5>
-                  <?php if ($transportation != 0) {
-                      foreach ($transportation as $t ) { 
-                        $id           = $t->id;                  
-                        $code         = $t->code;
-                        $description  = $t->description;
-                        $seat_qty     = $t->seat_qty;
-                      }
-                    } else {  
-                        $id           = null;
-                        $code         = null;
-                        $description  = null;
-                        $seat_qty     = null;
-                    }
-                  ?>
-                  <form class="forms" action="<?php echo base_url();?>/index.php/crud/add_transportation" method='post'>
-                    <div class="form-group">
-                      <input type="hidden" class="form-control p-input" name="id" id="id" aria-describedby="fullnameHelp" placeholder="Enter Fullname" value="<?php echo $id?>">
-                      <label for="code">Code</label>
-                      <input type="text" class="form-control p-input" name="code" id="code" aria-describedby="codeHelp" placeholder="Enter code" value="<?php echo $code?>">
-                    </div>
-                    <div class="form-group">
-                      <label for="description">Nama Pesawat</label>
-                      <input type="text" class="form-control p-input" name="description" id="description" placeholder="Pesawat" value="<?php echo $description?>">
-                    </div>
-                    <div class="form-group">
-                      <label for="seat_qty">Jumlah Kursi</label>
-                      <input type="text" class="form-control p-input" name="seat_qty" id="seat_qty" aria-describedby="seat_qtyHelp" placeholder="Enter Quantity" value="<?php echo $seat_qty?>">
-                    </div>
-                    <div class="form-group">
-                      <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                  </form>
+                  <div class="card-title mb-4">
+                    <h5>Tambah Data 
+                      <button type="button" class="btn btn-primary btn-sm">
+                        <?php echo anchor('admin/form_rute/','Add');?>
+                      </button> 
+                    </h5>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table center-aligned-table">
+                      <thead>
+                        <tr class="text-primary">
+                          <th>No</th>
+                          <th>Depart from</th>
+                          <th>Depart to</th>
+                          <th>Depart at</th>
+                          <th>Transit to</th>
+                          <th>Transit Arrived</th>
+                          <th>Arrived</th>
+                          <th>Price</th>
+                          <th></th>
+                          <th></th> 
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php 
+                          $no = 1;
+                          foreach($rute as $r) {  
+                        ?>
+                        <tr class="">
+                          <td><?php echo $no++ ?></td> 
+                          <td><?php echo $r->rute_from ?></td>
+                          <td><?php echo $r->rute_to ?></td>
+                          <td><?php echo $r->depart_at ?></td>
+                          <td><?php echo $r->transit_to ?></td>
+                          <td><?php echo $r->transit_arrived ?></td>
+                          <td><?php echo $r->arrived ?></td>
+                          <td><?php echo $r->price ?></td>
+                          <td>
+                            <button type="button" class="btn btn-primary btn-sm" >
+                              <?php echo anchor('admin/edit_form_rute/'.$r->id,'Manage');?>
+                            </button>
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-danger btn-sm" >
+                              <?php echo anchor('crud/delete_rute/'.$r->id,'Remove');?>
+                            </button>
+                          </td>
+                        </tr>
+                        <?php } ?>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
         <!-- partial:../../partials/_footer.html -->
-
         <footer class="footer">
           <div class="container-fluid clearfix">
             <span class="float-right">
@@ -146,7 +169,6 @@
             </span>
           </div>
         </footer>
-
 
         <!-- partial -->
       </div>
@@ -157,7 +179,7 @@
   <script src="<?php echo base_url('assets/admin/');?>node_modules/jquery/dist/jquery.min.js"></script>
   <script src="<?php echo base_url('assets/admin/');?>node_modules/popper.js/dist/umd/popper.min.js"></script>
   <script src="<?php echo base_url('assets/admin/');?>node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="<?php echo base_url('assets/admin/');?>/node_modules/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.min.js"></script>
+  <script src="<?php echo base_url('assets/admin/');?>node_modules/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.min.js"></script>
   <script src="<?php echo base_url('assets/admin/');?>js/off-canvas.js"></script>
   <script src="<?php echo base_url('assets/admin/');?>js/hoverable-collapse.js"></script>
   <script src="<?php echo base_url('assets/admin/');?>js/misc.js"></script>

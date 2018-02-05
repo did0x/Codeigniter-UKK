@@ -48,13 +48,13 @@
         <nav class="bg-white sidebar sidebar-offcanvas" id="sidebar">
           <div class="user-info">
             <img src="<?php echo base_url('assets/admin/');?>images/face.jpg" alt="">
-            <p class="name">Richard V.Welsh</p>
+            <p class="name"><?php echo $this->session->userdata('fullname'); ?></p>
             <p class="designation">Manager</p>
             <span class="online"></span>
           </div>
           <ul class="nav">
             <li class="nav-item">
-              <a class="nav-link" href="index.html">
+              <a class="nav-link" href="<?php echo site_url('admin');?>">
                 <img src="<?php echo base_url('assets/admin/');?>images/icons/1.png" alt="">
                 <span class="menu-title">Dashboard</span>
               </a>
@@ -66,19 +66,19 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pages/charts/index.html">
+              <a class="nav-link" href="<?php echo site_url('admin/table_transportation');?>">
                 <img src="<?php echo base_url('assets/admin/');?>images/icons/6.png" alt="">
                 <span class="menu-title">Transportation</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pages/icons/index.html">
+              <a class="nav-link" href="<?php echo site_url('admin/table_rute');?>">
                 <img src="<?php echo base_url('assets/admin/');?>images/icons/7.png" alt="">
                 <span class="menu-title">Rute</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pages/ui-elements/typography.html">
+              <a class="nav-link" href="<?php echo site_url('admin/table_customer');?>">
                 <img src="<?php echo base_url('assets/admin/');?>images/icons/8.png" alt="">
                 <span class="menu-title">Customer</span>
               </a>

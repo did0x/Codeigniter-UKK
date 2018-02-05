@@ -59,7 +59,7 @@
                 <span class="menu-title">Dashboard</span>
               </a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="<?php echo site_url('admin/table_user');?>">
                 <img src="<?php echo base_url('assets/admin/');?>images/icons/5.png" alt="">
                 <span class="menu-title">User</span>
@@ -71,7 +71,7 @@
                 <span class="menu-title">Transportation</span>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href="<?php echo site_url('admin/table_rute');?>">
                 <img src="<?php echo base_url('assets/admin/');?>images/icons/7.png" alt="">
                 <span class="menu-title">Rute</span>
@@ -99,34 +99,40 @@
             <div class="col-lg-12">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title mb-4">Add Transportation</h5>
-                  <?php if ($transportation != 0) {
-                      foreach ($transportation as $t ) { 
-                        $id           = $t->id;                  
-                        $code         = $t->code;
-                        $description  = $t->description;
-                        $seat_qty     = $t->seat_qty;
+                  <h5 class="card-title mb-4">Add rute</h5>
+                  <?php if ($rute != 0) {
+                      foreach ($rute as $u ) { 
+                        $id       = $u->id;                  
+                        $fullname = $u->fullname;
+                        $username = $u->username;
+                        $password = $u->password;
+                        $level    = $u->level;
                       }
-                    } else {  
-                        $id           = null;
-                        $code         = null;
-                        $description  = null;
-                        $seat_qty     = null;
+                    } else {
+                        $id = null;
+                        $fullname = null;
+                        $username = null;
+                        $password = null;
+                        $level    = null;
                     }
                   ?>
-                  <form class="forms" action="<?php echo base_url();?>/index.php/crud/add_transportation" method='post'>
+                  <form class="forms-sample" action="<?php echo base_url();?>/index.php/crud/add_rute" method='post'>
                     <div class="form-group">
                       <input type="hidden" class="form-control p-input" name="id" id="id" aria-describedby="fullnameHelp" placeholder="Enter Fullname" value="<?php echo $id?>">
-                      <label for="code">Code</label>
-                      <input type="text" class="form-control p-input" name="code" id="code" aria-describedby="codeHelp" placeholder="Enter code" value="<?php echo $code?>">
+                      <label for="username">Username</label>
+                      <input type="text" class="form-control p-input" name="username" id="username" aria-describedby="usernameHelp" placeholder="Enter username" value="<?php echo $username?>">
                     </div>
                     <div class="form-group">
-                      <label for="description">Nama Pesawat</label>
-                      <input type="text" class="form-control p-input" name="description" id="description" placeholder="Pesawat" value="<?php echo $description?>">
+                      <label for="password">Password</label>
+                      <input type="password" class="form-control p-input" name="password" id="password" placeholder="Password" value="<?php echo $password?>">
                     </div>
                     <div class="form-group">
-                      <label for="seat_qty">Jumlah Kursi</label>
-                      <input type="text" class="form-control p-input" name="seat_qty" id="seat_qty" aria-describedby="seat_qtyHelp" placeholder="Enter Quantity" value="<?php echo $seat_qty?>">
+                      <label for="fullname">Fullname</label>
+                      <input type="text" class="form-control p-input" name="fullname" id="fullname" aria-describedby="fullnameHelp" placeholder="Enter Fullname" value="<?php echo $fullname?>">
+                    </div>
+                    <div class="form-group">
+                      <label for="level">Level</label>
+                      <input type="text" class="form-control p-input" name="level" id="level" aria-describedby="levelHelp" placeholder="Enter Level" value="<?php echo $level?>">
                     </div>
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary">Submit</button>
