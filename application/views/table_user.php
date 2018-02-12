@@ -106,8 +106,8 @@
                 <div class="card-body">
                   <div class="card-title mb-4">
                     <h5>Tambah Data 
-                      <button type="button" class="btn btn-primary btn-sm">
-                        <?php echo anchor('admin/form_user/','Add');?>
+                      <button type="button" class="btn btn-primary btn-sm" onclick="location.href='<?php echo base_url(); ?>index.php/admin/form_user'">
+                        Add
                       </button> 
                     </h5>
                   </div>
@@ -136,13 +136,13 @@
                           <td><?php echo $u->password ?></td>
                           <td><?php echo $u->level ?></td>
                           <td>
-                            <button type="button" class="btn btn-primary btn-sm" >
-                              <?php echo anchor('admin/edit_form_user/'.$u->id,'Manage');?>
+                            <button type="button" name="edit" class="btn btn-primary btn-sm" onclick="location.href='<?php echo base_url(); ?>index.php/admin/edit_form_user/<?php echo $u->id;?>'">
+                                Manage
                             </button>
                           </td>
                           <td>
-                            <button type="button" class="btn btn-danger btn-sm" >
-                              <?php echo anchor('crud/delete_user/'.$u->id,'Remove');?>
+                            <button type="button" class="btn btn-danger btn-sm" onclick="location.href='<?php echo base_url(); ?>index.php/crud/delete_user/<?php echo $u->id;?>'">
+                              Remove
                             </button>
                           </td>
                         </tr>

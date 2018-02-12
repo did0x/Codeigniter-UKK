@@ -10,6 +10,11 @@
   <link rel="stylesheet" href="<?php echo base_url('assets/admin/');?>node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css" />
   <link rel="stylesheet" href="<?php echo base_url('assets/admin/');?>css/style.css" />
   <link rel="shortcut icon" href="<?php echo base_url('assets/admin/');?>images/favicon.png" />
+  <style type="text/css">
+    .input-group-btn{
+      align-items: normal;
+    }
+  </style>
 </head>
 
 <body>
@@ -105,7 +110,8 @@
                         $id       = $u->id;                  
                         $fullname = $u->fullname;
                         $username = $u->username;
-                        $password = $u->password;
+                        $hexpassword = $u->password;
+                        $password = $model->decrypt_data($hexpassword);
                         $level    = $u->level;
                       }
                     } else {
@@ -118,13 +124,20 @@
                   ?>
                   <form class="forms-sample" action="<?php echo base_url();?>/index.php/crud/add_user" method='post'>
                     <div class="form-group">
-                      <input type="hidden" class="form-control p-input" name="id" id="id" aria-describedby="fullnameHelp" placeholder="Enter Fullname" value="<?php echo $id?>">
+                      <input type="hidden" class="form-control p-input" name="id" id="id" aria-describedby="idHelp" value="<?php echo $id?>">
                       <label for="username">Username</label>
                       <input type="text" class="form-control p-input" name="username" id="username" aria-describedby="usernameHelp" placeholder="Enter username" value="<?php echo $username?>">
                     </div>
                     <div class="form-group">
                       <label for="password">Password</label>
-                      <input type="password" class="form-control p-input" name="password" id="password" placeholder="Password" value="<?php echo $password?>">
+                      <div class="input-group">
+                        <input type="password" class="form-control p-input" name="password" id="password" placeholder="Password" value="<?php echo $password?>">
+                        <span class="input-group-btn">
+                          <button type="button" name="show" class="btn btn-secondary">
+                            <i class="fa fa-eye"></i>
+                          </button>
+                        </span>
+                      </div>
                     </div>
                     <div class="form-group">
                       <label for="fullname">Fullname</label>
@@ -132,7 +145,11 @@
                     </div>
                     <div class="form-group">
                       <label for="level">Level</label>
-                      <input type="text" class="form-control p-input" name="level" id="level" aria-describedby="levelHelp" placeholder="Enter Level" value="<?php echo $level?>">
+                      <select class="form-control" id="level" name="level">
+                          <option selected="selected" value=''>-- Select Level --</option>
+                          <option <?php if($level == 'admin') echo "selected='selected'"?> value='admin'>Admin</option>
+                          <option <?php if($level == 'manager') echo "selected='selected'"?> value='manager'>Manager</option>
+                      </select>
                     </div>
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary">Submit</button>
@@ -167,6 +184,17 @@
   <script src="<?php echo base_url('assets/admin/');?>js/off-canvas.js"></script>
   <script src="<?php echo base_url('assets/admin/');?>js/hoverable-collapse.js"></script>
   <script src="<?php echo base_url('assets/admin/');?>js/misc.js"></script>
+
+  <!-- Script -->
+  <script type="text/javascript">
+
+    // Show password in Form User
+    $("button[name=show]").click(function() {
+      var show = $("input[name=password]");
+      show.attr("type") === "password" ? show.attr("type","text") : show.attr("type","password");
+    });
+  </script>
+
 </body>
 
 </html>

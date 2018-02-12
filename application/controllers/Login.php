@@ -7,6 +7,7 @@ class Login extends CI_Controller {
 		parent::__construct();		
 
 		$this->load->model('m_login');
+		$this->load->model('m_user');
 
 	}
 
@@ -16,12 +17,13 @@ class Login extends CI_Controller {
 		$this->load->view('login',$data);
 	}
 
+
 	public function login(){
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
 		$where = array(
 			'username' => $username,
-			'password' => $password
+			'password' => $this->m_user->encrypt_data($password)
 			);
 		$cek = $this->m_login->check_login($where,'user')->num_rows();
 		if($cek > 0){

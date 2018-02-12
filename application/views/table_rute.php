@@ -116,6 +116,7 @@
                       <thead>
                         <tr class="text-primary">
                           <th>No</th>
+                          <th>ID Pesawat</th>
                           <th>Depart from</th>
                           <th>Depart to</th>
                           <th>Depart at</th>
@@ -134,6 +135,7 @@
                         ?>
                         <tr class="">
                           <td><?php echo $no++ ?></td> 
+                          <td><?php echo $r->transportation_id ?></td>
                           <td><?php echo $r->rute_from ?></td>
                           <td><?php echo $r->rute_to ?></td>
                           <td><?php echo $r->depart_at ?></td>

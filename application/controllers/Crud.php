@@ -6,15 +6,13 @@ class Crud extends CI_Controller {
 	function __construct(){
 		parent::__construct();		
 
-		$this->load->model('m_user');
+		$this->load->model('m_data');
         $this->load->helper('url');
 	}
 
 	public function index()
 	{
 		// Sementara di kosongkan dulu
-		// $data['user'] = $this->m_data->tampil_data()->result();	
-		// var_dump($data);
 	}
 
 /////////////// FUNCTION FOR USER  ///////////////////////////
@@ -29,7 +27,7 @@ class Crud extends CI_Controller {
 		$data = array(
 			'fullname' => $fullname,
 			'username' => $username,
-			'password' => $password,
+			'password' => $this->m_data->encrypt_data($password),
 			'level' => $level
 			);
 
@@ -39,11 +37,11 @@ class Crud extends CI_Controller {
 
 		if ($id == 0) {
 			//Add Data
-			$this->m_user->input_data($data,'user');
+			$this->m_data->input_data($data,'user');
 			redirect('admin/table_user');
 		} else {
 			//Update Data
-			$this->m_user->update_data($where,$data,'user');
+			$this->m_data->update_data($where,$data,'user');
 			redirect('admin/table_user');
 		}
 
@@ -53,7 +51,7 @@ class Crud extends CI_Controller {
 
 	public function delete_user($id){
 		$where = array('id' => $id);
-		$this->m_user->hapus_data($where,'user');
+		$this->m_data->hapus_data($where,'user');
 		redirect('admin/table_user');
 	}
 
@@ -61,8 +59,8 @@ class Crud extends CI_Controller {
 
 	public function add_transportation(){
 		$id = $this->input->post('id');
-		$code= $this->input->post('code');
-		$description= $this->input->post('description');
+		$code = $this->input->post('code');
+		$description = $this->input->post('description');
 		$seat_qty = $this->input->post('seat_qty');
 
 		$data = array(
@@ -77,11 +75,11 @@ class Crud extends CI_Controller {
 
 		if ($id == 0) {
 			//Add Data
-			$this->m_user->input_data($data,'transportation');
+			$this->m_data->input_data($data,'transportation');
 			redirect('admin/table_transportation');
 		} else {
 			//Update Data
-			$this->m_user->update_data($where,$data,'transportation');
+			$this->m_data->update_data($where,$data,'transportation');
 			redirect('admin/table_transportation');
 		}
 
@@ -91,7 +89,7 @@ class Crud extends CI_Controller {
 
 	public function delete_transportation($id){
 		$where = array('id' => $id);
-		$this->m_user->hapus_data($where,'transportation');
+		$this->m_data->hapus_data($where,'transportation');
 		redirect('admin/table_transportation');
 	}
 
@@ -99,14 +97,25 @@ class Crud extends CI_Controller {
 
 	public function add_rute(){
 		$id = $this->input->post('id');
-		$code= $this->input->post('code');
-		$description= $this->input->post('description');
-		$seat_qty = $this->input->post('seat_qty');
+		$transportation_id = $this->input->post('transportation_id');
+		$rute_to = $this->input->post('rute_to');
+		$rute_from = $this->input->post('rute_from');
+		$depart_at = $this->input->post('depart_at');
+		$transit_to = $this->input->post('transit_to');
+		$transit_arrived = $this->input->post('transit_arrived');
+		$arrived = $this->input->post('arrived');
+		$price = $this->input->post('price');
+		
 
 		$data = array(
-			'code' => $code,
-			'description' => $description,
-			'seat_qty' => $seat_qty
+			'rute_to' => $rute_to,
+			'rute_from' => $rute_from,
+			'depart_at' => $depart_at,
+			'transit_to' => $transit_to,
+			'transit_arrived' => $transit_arrived,
+			'arrived' => $arrived,
+			'price' => $price,
+			'transportation_id' => $transportation_id
 			);
 
 		$where = array(
@@ -115,12 +124,12 @@ class Crud extends CI_Controller {
 
 		if ($id == 0) {
 			//Add Data
-			$this->m_user->input_data($data,'rute');
-			redirect('admin/table_transportation');
+			$this->m_data->input_data($data,'rute');
+			redirect('admin/table_rute');
 		} else {
 			//Update Data
-			$this->m_user->update_data($where,$data,'rute');
-			redirect('admin/table_transportation');
+			$this->m_data->update_data($where,$data,'rute');
+			redirect('admin/table_rute');
 		}
 
 
@@ -129,89 +138,12 @@ class Crud extends CI_Controller {
 
 	public function delete_rute($id){
 		$where = array('id' => $id);
-		$this->m_user->hapus_data($where,'rute');
-		redirect('admin/table_transportation');
-	}
-
-/////////////// FUNCTION FOR TRANSPORTATION  ///////////////////////////
-
-	public function add_transportation(){
-		$id = $this->input->post('id');
-		$code= $this->input->post('code');
-		$description= $this->input->post('description');
-		$seat_qty = $this->input->post('seat_qty');
-
-		$data = array(
-			'code' => $code,
-			'description' => $description,
-			'seat_qty' => $seat_qty
-			);
-
-		$where = array(
-			'id' => $id
-			);
-
-		if ($id == 0) {
-			//Add Data
-			$this->m_user->input_data($data,'transportation');
-			redirect('admin/table_transportation');
-		} else {
-			//Update Data
-			$this->m_user->update_data($where,$data,'transportation');
-			redirect('admin/table_transportation');
-		}
-
-
+		$this->m_data->hapus_data($where,'rute');
+		redirect('admin/table_rute');
 	}
 
 
-	public function delete_transportation($id){
-		$where = array('id' => $id);
-		$this->m_user->hapus_data($where,'transportation');
-		redirect('admin/table_transportation');
-	}
-
-
-/////////////// FUNCTION FOR CUSTOMER  ///////////////////////////
-
-	public function add_customer(){
-		$id = $this->input->post('id');
-		$code= $this->input->post('code');
-		$description= $this->input->post('description');
-		$seat_qty = $this->input->post('seat_qty');
-
-		$data = array(
-			'code' => $code,
-			'description' => $description,
-			'seat_qty' => $seat_qty
-			);
-
-		$where = array(
-			'id' => $id
-			);
-
-		if ($id == 0) {
-			//Add Data
-			$this->m_user->input_data($data,'customer');
-			redirect('admin/table_transportation');
-		} else {
-			//Update Data
-			$this->m_user->update_data($where,$data,'customer');
-			redirect('admin/table_transportation');
-		}
-
-
-	}
-
-
-	public function delete_transportation($id){
-		$where = array('id' => $id);
-		$this->m_user->hapus_data($where,'customer');
-		redirect('admin/table_transportation');
-	}
-
-
-
+/////////////// FUNCTION FOR CUSTOMER  ///////////////////////////	
 
 
 

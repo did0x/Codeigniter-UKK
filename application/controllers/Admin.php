@@ -6,10 +6,7 @@ class Admin extends CI_Controller {
 	function __construct(){
 		parent::__construct();		
 
-		$this->load->model('m_user');
-		$this->load->model('m_transportation');
-		$this->load->model('m_rute');
-		$this->load->model('m_customer');
+		$this->load->model('m_data');		
         $this->load->helper('url');
 
         if($this->session->userdata('status') != "login"){
@@ -28,7 +25,7 @@ class Admin extends CI_Controller {
 
 	public function table_user()
 	{
-		$data['user'] = $this->m_user->tampil_data()->result();	
+		$data['user'] = $this->m_data->tampil_data('user')->result();	
 		$this->load->view('table_user',$data);
 	}
 
@@ -40,7 +37,8 @@ class Admin extends CI_Controller {
 
 	public function edit_form_user($id){
 		$where = array('id' => $id);
-		$data['user'] = $this->m_user->tampil_data_id($where,'user')->result();
+		$data['model'] = $this->m_data;
+		$data['user'] = $this->m_data->tampil_data_id($where,'user')->result();
 		$this->load->view('form_user',$data);
 	}
 
@@ -48,7 +46,7 @@ class Admin extends CI_Controller {
 
 	public function table_transportation()
 	{
-		$data['transportation'] = $this->m_transportation->tampil_data()->result();	
+		$data['transportation'] = $this->m_data->tampil_data('transportation')->result();	
 		$this->load->view('table_transportation',$data);
 	}
 
@@ -60,7 +58,7 @@ class Admin extends CI_Controller {
 
 	public function edit_form_transportation($id){
 		$where = array('id' => $id);
-		$data['transportation'] = $this->m_transportation->tampil_data_id($where,'transportation')->result();
+		$data['transportation'] = $this->m_data->tampil_data_id($where,'transportation')->result();
 		$this->load->view('form_transportation',$data);
 	}
 
@@ -69,7 +67,7 @@ class Admin extends CI_Controller {
 
 	public function table_rute()
 	{
-		$data['rute'] = $this->m_rute->tampil_data()->result();	
+		$data['rute'] = $this->m_data->tampil_data('rute')->result();	
 		$this->load->view('table_rute',$data);
 	}
 
@@ -81,7 +79,7 @@ class Admin extends CI_Controller {
 
 	public function edit_form_rute($id){
 		$where = array('id' => $id);
-		$data['rute'] = $this->m_rute->tampil_data_id($where,'rute')->result();
+		$data['rute'] = $this->m_data->tampil_data_id($where,'rute')->result();
 		$this->load->view('form_rute',$data);
 	}
 
@@ -90,21 +88,12 @@ class Admin extends CI_Controller {
 
 	public function table_customer()
 	{
-		$data['customer'] = $this->m_customer->tampil_data()->result();	
+		$data['customer'] = $this->m_data->tampil_data('customer')->result();	
 		$this->load->view('table_customer',$data);
 	}
 
-	public function form_customer()
-	{
-		$data['customer'] = null;
-		$this->load->view('form_customer',$data);
-	}
 
-	public function edit_form_customer($id){
-		$where = array('id' => $id);
-		$data['customer'] = $this->m_customer->tampil_data_id($where,'customer')->result();
-		$this->load->view('form_customer',$data);
-	}
+	// !TODO ADD FUNCTION MESSAGE CUSTOMER
 
 
 }

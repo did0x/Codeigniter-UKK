@@ -9,7 +9,7 @@ class m_rute extends CI_Model{
 	}
 	
 	function tampil_data_id($where,$table){		
-	return $this->db->get_where($table,$where);
+		return $this->db->get_where($table,$where);
 	}
 
 	function input_data($data,$table){

@@ -57,7 +57,7 @@
 
                                     <!-- Flight -->
                                     <li>
-                                        <a href="flight-list.html">Flight List</a>
+                                        <a href="flight-list.html">Booking</a>
                                     </li>
 
                                     <!-- About -->

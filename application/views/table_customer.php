@@ -9,8 +9,12 @@
   <link rel="stylesheet" href="<?php echo base_url('assets/admin/');?>node_modules/font-awesome/css/font-awesome.min.css" />
   <link rel="stylesheet" href="<?php echo base_url('assets/admin/');?>node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css" />
   <link rel="stylesheet" href="<?php echo base_url('assets/admin/');?>css/style.css" />
-  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker.min.css">
   <link rel="shortcut icon" href="<?php echo base_url('assets/admin/');?>images/favicon.png" />
+  <style type="text/css">
+    a , a:hover{
+      color:white;
+    }
+  </style>
 </head>
 
 <body>
@@ -72,13 +76,13 @@
                 <span class="menu-title">Transportation</span>
               </a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="<?php echo site_url('admin/table_rute');?>">
                 <img src="<?php echo base_url('assets/admin/');?>images/icons/7.png" alt="">
                 <span class="menu-title">Rute</span>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href="<?php echo site_url('admin/table_customer');?>">
                 <img src="<?php echo base_url('assets/admin/');?>images/icons/8.png" alt="">
                 <span class="menu-title">Customer</span>
@@ -95,85 +99,56 @@
 
         <!-- partial -->
         <div class="content-wrapper">
-          <h3 class="page-heading mb-4">Forms</h3>
+          <h3 class="page-heading mb-4">Tables Customer</h3>
           <div class="row mb-2">
             <div class="col-lg-12">
               <div class="card">
                 <div class="card-body">
-                  <h5 class="card-title mb-4">Add rute</h5>
-                  <?php if ($rute != 0) {
-                      foreach ($rute as $r ) { 
-                        $id                 = $r->id;                  
-                        $transportation_id  = $r->transportation_id;                  
-                        $depart_from        = $r->rute_from;
-                        $depart_to          = $r->rute_to;
-                        $depart_at          = $r->depart_at;
-                        $transit_to         = $r->transit_to;
-                        $transit_arrived    = $r->transit_arrived;
-                        $arrived            = $r->arrived;
-                        $price              = $r->price;
-                      }
-                    } else {
-                        $id                 = null;
-                        $transportation_id  = null;
-                        $depart_from        = null;
-                        $depart_to          = null;
-                        $depart_at          = null;
-                        $transit_to         = null;
-                        $transit_arrived    = null;
-                        $arrived            = null;
-                        $price              = null;
-                    }
-                  ?>
-                  <form class="forms-sample" action="<?php echo base_url();?>index.php/crud/add_rute" method='post'>
-                    <div class="form-group">
-                      <input type="hidden" class="form-control p-input" name="id" id="id" aria-describedby="idHelp" value="<?php echo $id?>">
-                      <label for="depart_from">Depart from </label>
-                      <input type="text" class="form-control p-input" name="rute_from" id="rute_from" aria-describedby="depart_fromHelp" placeholder="Depart From" value="<?php echo $depart_from?>">
-                    </div>
-                    <div class="form-group">
-                      <label for="transportation_id">ID Pesawat</label>
-                      <input type="text" class="form-control p-input" name="transportation_id" id="transportation_id" aria-describedby="transportation_idHelp" placeholder="ID Pesawat" value="<?php echo $transportation_id?>">
-                    </div>
-                    <div class="form-group">
-                      <label for="depart_to">Depart to</label>
-                      <input type="text" class="form-control p-input" name="rute_to" id="rute_to" aria-describedby="depart_toHelp" placeholder="Depart To" value="<?php echo $depart_to?>">
-                    </div>
-                    <div class="form-group">
-                      <label for="depart_at">Depart at</label>
-                      <!-- !TODO Change input type to timepicker -->
-                      <input type="time" data-format="HH:mm:ss" class="form-control p-input" name="depart_at" id="depart_at" aria-describedby="depart_atHelp" placeholder="Depart At" value="<?php echo $depart_at?>">
-                    </div>
-                    <div class="form-group">
-                      <label for="transit_to">Transit to</label>
-                      <input type="text" class="form-control p-input" name="transit_to" id="transit_to" aria-describedby="transit_toHelp" placeholder="Transit To" value="<?php echo $transit_to?>">
-                    </div>
-                    <div class="form-group">
-                      <label for="transit_arrived">Transit arrived</label>
-                      <input type="timepicker" class="form-control p-input" name="transit_arrived" id="transit_arrived" aria-describedby="transit_arrivedHelp" placeholder="Transit Arrived" value="<?php echo $transit_arrived?>">
-                    </div>
-                    <div class="form-group">
-                      <label for="arrived">Arrived</label>
-                      <input type="text" class="form-control p-input" name="arrived" id="arrived" aria-describedby="arrivedHelp" placeholder="Arrived" value="<?php echo $arrived?>">
-                    </div>
-                    <div class="form-group">
-                      <label for="price">Price</label>
-                      <input type="text" class="form-control p-input" name="price" id="price" aria-describedby="priceHelp" placeholder="Price" value="<?php echo $price?>">
-                    </div>
-                    <div id="dtBox"></div>
-                    <div class="form-group">
-                      <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                  </form>
+                  <div class="card-title mb-4">
+                    
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table center-aligned-table">
+                      <thead>
+                        <tr class="text-primary">
+                          <th>No</th>
+                          <th>Nama</th>
+                          <th>Email</th>
+                          <th>Alamat</th>
+                          <th>No. Telp.</th>
+                          <th>Jenis Kelamin</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?php 
+                          $no = 1;
+                          foreach($customer as $c) {  
+                        ?>
+                        <tr class="">
+                          <td><?php echo $no++ ?></td> 
+                          <td><?php echo $c->name ?></td>
+                          <td><?php echo $c->email ?></td>
+                          <td><?php echo $c->address ?></td>
+                          <td><?php echo $c->phone ?></td>
+                          <td><?php echo $c->gender ?></td>
+                          <td>
+                            <button type="button" class="btn btn-primary btn-sm" >
+                              <!-- !TODO: Add function messsage customer -->
+                              <?php echo anchor('admin/message_customer/'.$c->id,'Message');?>
+                            </button>
+                          </td>
+                        </tr>
+                        <?php } ?>
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div id="dtBox"></div>
-
         <!-- partial:../../partials/_footer.html -->
-
         <footer class="footer">
           <div class="container-fluid clearfix">
             <span class="float-right">
@@ -181,7 +156,6 @@
             </span>
           </div>
         </footer>
-
 
         <!-- partial -->
       </div>
@@ -192,24 +166,10 @@
   <script src="<?php echo base_url('assets/admin/');?>node_modules/jquery/dist/jquery.min.js"></script>
   <script src="<?php echo base_url('assets/admin/');?>node_modules/popper.js/dist/umd/popper.min.js"></script>
   <script src="<?php echo base_url('assets/admin/');?>node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="<?php echo base_url('assets/admin/');?>/node_modules/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.min.js"></script>
+  <script src="<?php echo base_url('assets/admin/');?>node_modules/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.min.js"></script>
   <script src="<?php echo base_url('assets/admin/');?>js/off-canvas.js"></script>
   <script src="<?php echo base_url('assets/admin/');?>js/hoverable-collapse.js"></script>
   <script src="<?php echo base_url('assets/admin/');?>js/misc.js"></script>
-  <script type="text/javascript" src="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker.min.js"></script>
-
-  <script type="text/javascript">
-    
-      $(document).ready(function()
-      {
-        $("#dtBox").DateTimePicker({
-          mode : "time",
-          titleContentTime : "Time Picker"
-        });
-      });
-    
-  </script>
-
 </body>
 
 </html>

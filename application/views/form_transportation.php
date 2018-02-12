@@ -59,13 +59,13 @@
                 <span class="menu-title">Dashboard</span>
               </a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="<?php echo site_url('admin/table_user');?>">
                 <img src="<?php echo base_url('assets/admin/');?>images/icons/5.png" alt="">
                 <span class="menu-title">User</span>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href="<?php echo site_url('admin/table_transportation');?>">
                 <img src="<?php echo base_url('assets/admin/');?>images/icons/6.png" alt="">
                 <span class="menu-title">Transportation</span>
@@ -113,19 +113,24 @@
                         $description  = null;
                         $seat_qty     = null;
                     }
+
+                    // !TODO : Form Transportation dibagi dua, untuk menambahkan kursi
+                    //         dan untuk menambahkan code pesawat dan nama pesawat 
+
                   ?>
                   <form class="forms" action="<?php echo base_url();?>/index.php/crud/add_transportation" method='post'>
                     <div class="form-group">
-                      <input type="hidden" class="form-control p-input" name="id" id="id" aria-describedby="fullnameHelp" placeholder="Enter Fullname" value="<?php echo $id?>">
+                      <input type="hidden" class="form-control p-input" name="id" id="id" aria-describedby="idHelp" value="<?php echo $id?>">
                       <label for="code">Code</label>
                       <input type="text" class="form-control p-input" name="code" id="code" aria-describedby="codeHelp" placeholder="Enter code" value="<?php echo $code?>">
                     </div>
                     <div class="form-group">
                       <label for="description">Nama Pesawat</label>
-                      <input type="text" class="form-control p-input" name="description" id="description" placeholder="Pesawat" value="<?php echo $description?>">
+                      <input type="text" class="form-control p-input" name="description" id="description" aria-describedby="pesawatHelp" placeholder="Pesawat" value="<?php echo $description?>">
                     </div>
                     <div class="form-group">
                       <label for="seat_qty">Jumlah Kursi</label>
+                      <!-- !TODO : Change input type to list -->
                       <input type="text" class="form-control p-input" name="seat_qty" id="seat_qty" aria-describedby="seat_qtyHelp" placeholder="Enter Quantity" value="<?php echo $seat_qty?>">
                     </div>
                     <div class="form-group">
