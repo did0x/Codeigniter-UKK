@@ -10,10 +10,10 @@ class Crud extends CI_Controller {
         $this->load->helper('url');
 	}
 
-	public function index()
-	{
+	public function index(){
 		// Sementara di kosongkan dulu
 	}
+
 
 /////////////// FUNCTION FOR USER  ///////////////////////////
 

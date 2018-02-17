@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="<?php echo base_url('assets/admin/');?>node_modules/font-awesome/css/font-awesome.min.css" />
   <link rel="stylesheet" href="<?php echo base_url('assets/admin/');?>node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css" />
   <link rel="stylesheet" href="<?php echo base_url('assets/admin/');?>css/style.css" />
-  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker.min.css">
+  <link rel="stylesheet" href="<?php echo base_url('assets/admin/');?>css/DateTimePicker.min.css" />
   <link rel="shortcut icon" href="<?php echo base_url('assets/admin/');?>images/favicon.png" />
 </head>
 
@@ -150,11 +150,11 @@
                     </div>
                     <div class="form-group">
                       <label for="transit_arrived">Transit arrived</label>
-                      <input type="timepicker" class="form-control p-input" name="transit_arrived" id="transit_arrived" aria-describedby="transit_arrivedHelp" placeholder="Transit Arrived" value="<?php echo $transit_arrived?>">
+                      <input type="time" data-format="HH:mm:ss" class="form-control p-input" name="transit_arrived" id="transit_arrived" aria-describedby="transit_arrivedHelp" placeholder="Transit Arrived" value="<?php echo $transit_arrived?>">
                     </div>
                     <div class="form-group">
                       <label for="arrived">Arrived</label>
-                      <input type="text" class="form-control p-input" name="arrived" id="arrived" aria-describedby="arrivedHelp" placeholder="Arrived" value="<?php echo $arrived?>">
+                      <input type="time" data-format="HH:mm:ss" class="form-control p-input" name="arrived" id="arrived" aria-describedby="arrivedHelp" placeholder="Arrived" value="<?php echo $arrived?>">
                     </div>
                     <div class="form-group">
                       <label for="price">Price</label>
@@ -196,7 +196,8 @@
   <script src="<?php echo base_url('assets/admin/');?>js/off-canvas.js"></script>
   <script src="<?php echo base_url('assets/admin/');?>js/hoverable-collapse.js"></script>
   <script src="<?php echo base_url('assets/admin/');?>js/misc.js"></script>
-  <script type="text/javascript" src="//cdn.jsdelivr.net/datetimepicker/latest/DateTimePicker.min.js"></script>
+  <script src="<?php echo base_url('assets/admin/');?>js/DateTimePicker.min.js"></script>
+  >
 
   <script type="text/javascript">
     

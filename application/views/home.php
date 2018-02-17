@@ -110,15 +110,27 @@
                         <h2>Where would you like to go?</h2>
                         <div class="form-search clearfix">
                             <div class="form-field field-from">
-                                <label for="flight-from"><span>Flight from:</span> Airport</label>
-                                <input type="text" name="flightfrom" id="flight-from" class="field-input">
+                                <label for="flight-from"><span>Flight from:</span> City</label>
+                                <input type="text" list="from" name="flight-from" id="flight-from" class="field-input">
+                                <datalist id="from">
+                                    <option value="Bandung">Bandung</option>
+                                    <option value="Jakarta">Jakarta</option>
+                                    <option value="Medan">Medan</option>
+                                    <option value="Balikpapan">Balikpapan</option>
+                                </datalist>
                             </div>
                             <div class="form-field field-to">
-                                <label for="flight-to"><span>To :</span> Country, Airpor</label>
-                                <input type="text" id="flight-to" class="field-input">
+                                <label for="flight-to"><span>To :</span> City</label>
+                                <input type="text" list="to" name="flight-to" id="flight-to" class="field-input">
+                                <datalist id="to">
+                                    <option value="Bandung">Bandung</option>
+                                    <option value="Jakarta">Jakarta</option>
+                                    <option value="Medan">Medan</option>
+                                    <option value="Balikpapan">Balikpapan</option>
+                                </datalist>
                             </div>
                             <div class="form-field field-date">
-                                <input type="text" class="field-input calendar-input" placeholder="Departing">
+                                <input type="text" class="field-input calendar-input depart" placeholder="Departing">
                             </div>
                             <div class="form-field field-date">
                                 <input type="text" class="field-input calendar-input" placeholder="Returning">
@@ -146,7 +158,7 @@
                                 </div>
                             </div>
                             <div class="form-submit">
-                                <button type="submit" class="awe-btn awe-btn-medium awe-search">Search</button>
+                                <button type="submit" class="awe-btn awe-btn-medium awe-search btn-submit">Search</button>
                             </div>
                         </div>
                     </div>
@@ -841,6 +853,15 @@
                 $('.nav-desktop ul li.current-menu-parent > a, .nav-desktop ul ul li.current-menu-item > a, .nav-desktop ul li.current-menu-parent > span, .nav-desktop ul ul li.current-menu-item > span').css('color','#061546')
             }
         });
+
+            var rute_from = $("#flight-from");
+            var rute_to   = $("#flight-to");
+
+        $(".btn-submit").click(function(){
+            window.location = "<?php echo site_url('home/search_flight/'); ?>" + rute_from.val() + "/" + rute_to.val();
+
+        })
+        
     });
 
     </script>
