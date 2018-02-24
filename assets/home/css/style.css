@@ -23,12 +23,13 @@
     16.  Contact Page
     17.  Payment Page
     18.  Cart
-    19.  Element Page
-    20.  404
-    21.  Comingsoon
-    22.  User Profile
-    23.  Footer
-    24.  Responsive
+    19.  Seat
+    20.  Element Page
+    21.  404
+    22.  Comingsoon
+    23.  User Profile
+    24.  Footer
+    25.  Responsive
 
 --------------------------------------------------------------------------------*/
 
@@ -7816,93 +7817,93 @@ blockquote:before {
   line-height: 28px;
   margin: 5px 0 0 0;
 }
-.payment-room > .row {
+.payment-flight > .row {
   margin-left: 0px;
   margin-right: 0px;
 }
-.payment-room > .row > [class*="col-"] {
+.payment-flight > .row > [class*="col-"] {
   padding-left: 30px;
   padding-right: 30px;
 }
-.payment-room .payment-info {
+.payment-flight .payment-info {
   margin-top: 30px;
 }
-.payment-room .payment-info h2 {
+.payment-flight .payment-info h2 {
   color: #111111;
   font-size: 34px;
   line-height: 36px;
   font-weight: 300;
   margin: 0;
 }
-.payment-room .payment-info .star-room {
+.payment-flight .payment-info .star-room {
   color: #59c45a;
   font-size: 12px;
   display: block;
   margin-top: 10px;
 }
-.payment-room .payment-info .star-room i {
+.payment-flight .payment-info .star-room i {
   margin-right: 2px;
 }
-.payment-room .payment-info ul {
+.payment-flight .payment-info ul {
   margin: 10px 0 0 0;
   padding: 0;
   list-style: none;
 }
-.payment-room .payment-info ul li {
+.payment-flight .payment-info ul li {
   position: relative;
   color: #333333;
   font-family: 'Open sans';
   padding-left: 90px;
   line-height: 30px;
 }
-.payment-room .payment-info ul li span {
+.payment-flight .payment-info ul li span {
   position: absolute;
   left: 0;
   top: 0;
   font-weight: 600;
 }
-.payment-room .payment-price {
+.payment-flight .payment-price {
   margin-top: 45px;
   border: 1px solid #e8e8e8;
   background-color: #fbfbfb;
   font-family: 'Open sans';
   overflow: hidden;
 }
-.payment-room .payment-price figure {
+.payment-flight .payment-price figure {
   width: 270px;
   float: left;
 }
-.payment-room .payment-price figure img {
+.payment-flight .payment-price figure img {
   max-width: 100%;
 }
-.payment-room .payment-price .total-trip {
+.payment-flight .payment-price .total-trip {
   padding: 20px;
   margin-left: 270px;
 }
-.payment-room .payment-price .total-trip span {
+.payment-flight .payment-price .total-trip span {
   color: #333333;
   font-weight: 600;
   line-height: 26px;
   display: block;
 }
-.payment-room .payment-price .total-trip span small {
+.payment-flight .payment-price .total-trip span small {
   font-size: 14px;
   font-weight: normal;
   color: #666666;
 }
-.payment-room .payment-price .total-trip p {
+.payment-flight .payment-price .total-trip p {
   margin: 10px 0 0 0;
   padding-top: 13px;
   line-height: 20px;
   border-top: 1px solid #e8e8e8;
 }
-.payment-room .payment-price .total-trip p ins {
+.payment-flight .payment-price .total-trip p ins {
   text-decoration: none;
   font-size: 16px;
   font-weight: 600;
   color: #25ab4b;
 }
-.payment-room .payment-price .total-trip p i {
+.payment-flight .payment-price .total-trip p i {
   margin-top: 10px;
   display: block;
   color: #666;
@@ -8379,7 +8380,58 @@ blockquote:before {
   margin-bottom: 0;
   margin-top: 40px;
 }
-/* 19. Element Page 
+/* 19. Seat
+ --------------------------------------------------------------------------------*/
+#holder {    
+  height:100%;
+  width: 100%;    
+  background-color:#F5F5F5;
+  border:1px solid #A4A4A4;
+
+}
+
+#place {
+  position:relative;
+  /*margin:7px;*/
+}
+#place a {
+  font-size:0.9em;
+  color:white;
+}
+
+#place li {
+  list-style: none outside none; 
+  text-align: center;
+  verticle-align:middle;
+}    
+#place li:hover {
+  background-color:yellow;      
+} 
+#place .seat {
+  background: #c3c3c3;
+  height:32px;
+  width:32px;
+  display:block;   
+  border-radius: 4px;
+}
+#place .selectedSeat { 
+  background-image:url("../images/icon-inbound.png");      
+}
+#place .selectingSeat { 
+  background-color: #1c3241;        
+}
+/*#place .row-2, #place .row-4, #place .row-6{
+  margin-top:20px !important;
+}*/
+#seatDescription li{
+  verticle-align:middle;    
+  list-style: none outside none;
+  padding-left:35px;
+  height:35px;
+  float:left;
+}
+
+/* 20. Element Page 
  --------------------------------------------------------------------------------*/
 .element-sc {
   background-color: #fff;
@@ -8437,7 +8489,7 @@ blockquote:before {
   margin-top: 15px;
 }
 
-/* 20. 404 
+/* 21. 404 
  --------------------------------------------------------------------------------*/
 .page-not-found {
   padding-top: 50px;
@@ -8490,7 +8542,7 @@ blockquote:before {
   background-color: #59c35c;
 }
 
-/* 21. Comingsoon 
+/* 22. Comingsoon 
  --------------------------------------------------------------------------------*/
 
 .countdown-wrapper {
@@ -8575,7 +8627,7 @@ blockquote:before {
   display: none;
 }
 
-/* 22. User Profile 
+/* 23. User Profile 
  --------------------------------------------------------------------------------*/
 .user-profile {
   margin-right: 30px;
@@ -8930,7 +8982,7 @@ blockquote:before {
        -o-transform: translateX(-50%);
           transform: translateX(-50%);
 }
-/* 23. Footer 
+/* 24. Footer 
  --------------------------------------------------------------------------------*/
 footer {
   background-color: #111111;
@@ -9034,7 +9086,7 @@ footer .copyright {
   margin: 45px 0 0 0;
   float: right;
 }
-/* 24. Responsive 
+/* 25. Responsive 
  --------------------------------------------------------------------------------*/
 @media (max-width: 1199px) {
   /*Header*/
@@ -9592,10 +9644,10 @@ footer .copyright {
   .step .payment-step li span {
     font-size: 26px;
   }
-  .payment-room .payment-info h2 {
+  .payment-flight .payment-info h2 {
     font-size: 30px;
   }
-  .payment-room .payment-price {
+  .payment-flight .payment-price {
     margin-top: 20px;
   }
   .payment-form h2 {
@@ -10133,13 +10185,13 @@ footer .copyright {
   .step .payment-step li span {
     font-size: 26px;
   }
-  .payment-room .payment-info h2 {
+  .payment-flight .payment-info h2 {
     font-size: 26px;
   }
-  .payment-room .payment-price figure {
+  .payment-flight .payment-price figure {
     width: 200px;
   }
-  .payment-room .payment-price .total-trip {
+  .payment-flight .payment-price .total-trip {
     padding: 10px 20px;
     margin-left: 200px;
   }
@@ -10935,18 +10987,18 @@ footer .copyright {
     padding-left: 0;
     padding-right: 0;
   }
-  .payment-room .row {
+  .payment-flight .row {
     margin-left: -15px;
     margin-right: -15px;
   }
-  .payment-room .row [class*="col-"] {
+  .payment-flight .row [class*="col-"] {
     padding-left: 15px;
     padding-right: 15px;
   }
-  .payment-room .payment-info {
+  .payment-flight .payment-info {
     margin-top: 20px;
   }
-  .payment-room .payment-info h2 {
+  .payment-flight .payment-info h2 {
     font-size: 24px;
   }
   .payment-form {
@@ -11586,13 +11638,13 @@ footer .copyright {
   .step .payment-step li p {
     display: none;
   }
-  .payment-room .payment-info h2 {
+  .payment-flight .payment-info h2 {
     font-size: 22px;
   }
-  .payment-room .payment-price figure {
+  .payment-flight .payment-price figure {
     display: none;
   }
-  .payment-room .payment-price .total-trip {
+  .payment-flight .payment-price .total-trip {
     margin: 0;
   }
   .payment-form h2 {

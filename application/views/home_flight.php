@@ -98,22 +98,31 @@
         <!-- Main -->
         <div class="main">
             <div class="container">
+                <div class="main-cn bg-white clearfix" style="padding: 0">
+                    <div class="step">
+                        <!-- Step -->
+                        <ul class="payment-step text-center clearfix">
+                            <li class="step">
+                                <span>1</span>
+                                <p>Choose Your Flight</p>
+                            </li>
+                            <li class="step">
+                                <span>2</span>
+                                <p>Your Booking &amp; Payment Details</p>
+                            </li>
+                            <li>
+                                <span>3</span>
+                                <p>Booking Completed!</p>
+                            </li>
+                        </ul>
+                        <!-- End Step -->
+                    </div>
+                </div>
                 <div class="main-cn flight-page bg-white clearfix">
                     <div class="row">
 
                         <!-- Flight Right -->
                         <div class="col-md-9 col-md-push-3">
-
-                            <!-- Breakcrumb -->
-                            <section class="breakcrumb-sc">
-                                <ul class="breadcrumb arrow">
-                                    <li><a href="index.html"><i class="fa fa-home"></i></a></li>
-                                    <li><a href="hotel.html" title="">Hotels</a></li>
-                                    <li><a href="#" title="">Europe </a></li>
-                                    <li>Netherlands</li>
-                                </ul>
-                            </section>
-                            <!-- End Breakcrumb -->
 
                             <!-- Flight List -->
                             <section class="flight-list">
@@ -142,15 +151,18 @@
 
                                 <!-- Flight List Head -->
                                 <div class="flight-list-head">
-                                    <span class="icon"><img src="images/icon-outbound.png" alt=""></span>    
-                                    <h3>Bangkok - New York</h3>
-                                    <p><span>110</span> trips</p>
+                                    <span class="icon"><img src="<?php echo base_url('assets/home/');?>images/icon-outbound.png" alt=""></span>    
+                                    
+                                    <h3><?php echo $depart['rute_from']; ?> - <?php echo $depart['rute_to']; ?></h3>
+
+                                    <p><span><?php echo count($flight); ?></span> trips</p>
                                 </div>
                                 <!-- Flight List Head -->
 
                                 <!-- Flight List Table -->
                                 <div class="flight-list-cn">
                                     <div class="scroll-table">
+                                    <form action="<?php echo base_url();?>index.php/home/reservation" method="get">
                                         <table class="table flight-table table-radio">
                                             <thead>
                                                 <tr>
@@ -159,27 +171,38 @@
                                                     <th>Arrival</th>
                                                     <th class="text-center">Duration</th>
                                                     <th class="text-center">Price</th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr>
+                                                <?php 
+                                                    foreach ($flight as $f ) {
+                                                ?>
+                                                <tr class="flight">
                                                     <td class="td-airline">
-                                                        <div class="radio-checkbox">
-                                                            <input type="radio" name="airline"  id="radio-air-11" class="radio">
-                                                            <label for="radio-air-11"></label>
-                                                        </div>
                                                         <img src="images/flight/icon/icon-3.png" alt="">
-                                                        Qatar Airways
+                                                        <?php echo $f->description; ?>
                                                     </td>
                                                     <td class="td-time">
-                                                        <p>08:35 <small>AM</small> <span>BKK</span></p>
+                                                        <p><?php echo date("H:i",strtotime($f->depart_at)); ?></p>
                                                     </td>
                                                     <td class="td-time">
-                                                        <p>09:00 <small>AM</small> <span>JFK</span></p>
+                                                        <p><?php echo date("H:i",strtotime($f->arrived)); ?></p>
                                                     </td>
                                                     <td class="td-stop text-center">
                                                         <div class="stop-cn">
-                                                            <label>18h15m</label>
+                                                            <label>
+                                                            <?php 
+                                                                $departTime = strtotime($f->depart_at);
+                                                                $arrivedTime = strtotime($f->arrived);
+                                                                $totalTime = ($arrivedTime - $departTime)/60;
+
+                                                                $hours = intval($totalTime/60);
+                                                                $minutes = $totalTime%60;
+
+                                                                echo $hours.'h '.$minutes.'m'; 
+                                                                 ?> 
+                                                            </label>
                                                             <span class="stops">
                                                                 <span class="stop"></span>
                                                             </span>
@@ -187,11 +210,24 @@
                                                         </div>
                                                     </td>
                                                     <td class="td-price text-center">
-                                                        <span><ins>1,453</ins> USD</span>
+                                                        <span>
+                                                            <ins>
+                                                                <?php 
+                                                                echo "Rp " . number_format($f->price,2,',','.');
+                                                                ?>
+                                                            </ins>
+                                                        </span>
+                                                    </td>
+                                                    <td>
+                                                        <button type="submit" name="rute" value="<?php echo $f->id;?>" class="awe-btn awe-btn-1 awe-btn-small">
+                                                            Book
+                                                        </button>
                                                     </td>
                                                 </tr>
+                                                <?php } ?>
                                             </tbody>
                                         </table>
+                                    </form>
                                     </div>
                                 </div>
                                 <!-- End Flight List Table -->
@@ -530,5 +566,14 @@
     <!-- Main Js -->
     <script type="text/javascript" src="<?php echo base_url('assets/home/');?>js/script.js"></script>
     <!-- End Main Js -->
+    
+    <script type="text/javascript">
+        $(document).ready(function(){
+            
+
+        });
+        
+    </script>
+
 </body>
 </html>

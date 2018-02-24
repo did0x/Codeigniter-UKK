@@ -26,8 +26,12 @@ class m_data extends CI_Model{
 		$this->db->update($table,$data);
 	}	
 
-	function search_data($where, $table){
-		return $this->db->get_where($table,$where);
+	function search_data($select,$where,$table,$table_join,$on){
+		$this->db->select($select);
+		$this->db->from($table);
+		$this->db->join($table_join,$on);
+		$this->db->where($where);
+		return $this->db->get();
 	}
 	
 	function encrypt_data($password){

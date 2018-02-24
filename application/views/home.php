@@ -106,62 +106,64 @@
                     </div>
                     <!-- End Category Singer -->
                     <!-- Form Search -->
-                    <div class="form-cn form-flight">
-                        <h2>Where would you like to go?</h2>
-                        <div class="form-search clearfix">
-                            <div class="form-field field-from">
-                                <label for="flight-from"><span>Flight from:</span> City</label>
-                                <input type="text" list="from" name="flight-from" id="flight-from" class="field-input">
-                                <datalist id="from">
-                                    <option value="Bandung">Bandung</option>
-                                    <option value="Jakarta">Jakarta</option>
-                                    <option value="Medan">Medan</option>
-                                    <option value="Balikpapan">Balikpapan</option>
-                                </datalist>
-                            </div>
-                            <div class="form-field field-to">
-                                <label for="flight-to"><span>To :</span> City</label>
-                                <input type="text" list="to" name="flight-to" id="flight-to" class="field-input">
-                                <datalist id="to">
-                                    <option value="Bandung">Bandung</option>
-                                    <option value="Jakarta">Jakarta</option>
-                                    <option value="Medan">Medan</option>
-                                    <option value="Balikpapan">Balikpapan</option>
-                                </datalist>
-                            </div>
-                            <div class="form-field field-date">
-                                <input type="text" class="field-input calendar-input depart" placeholder="Departing">
-                            </div>
-                            <div class="form-field field-date">
-                                <input type="text" class="field-input calendar-input" placeholder="Returning">
-                            </div>
-                            <div class="form-field field-select field-adult">
-                                <div class="select">
-                                    <span>Adults</span>
-                                    <select>
-                                        <option>Adults</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                    </select>
+                    <form action="<?php echo base_url();?>index.php/home/search_flight" method="get">
+                        <div class="form-cn form-flight">
+                            <h2>Where would you like to go?</h2>
+                            <div class="form-search clearfix">
+                                <div class="form-field field-from">
+                                    <!-- <label for="flight-from"><span>Flight from:</span> City</label> -->
+                                    <input type="text" list="from" name="flight-from" id="flight-from" class="field-input" placeholder="Flight from:">
+                                    <datalist id="from">
+                                        <option value="Bandung">Bandung</option>
+                                        <option value="Jakarta">Jakarta</option>
+                                        <option value="Medan">Medan</option>
+                                        <option value="Balikpapan">Balikpapan</option>
+                                    </datalist>
                                 </div>
-                            </div>
-                            <div class="form-field field-select field-children">
-                                <div class="select">
-                                    <span>Children</span>
-                                    <select>
-                                        <option>Children</option>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                    </select>
+                                <div class="form-field field-to">
+                                    <!-- <label for="flight-to"><span>To :</span> City</label> -->
+                                    <input type="text" list="to" name="flight-to" id="flight-to" class="field-input" placeholder="Flight to:">
+                                    <datalist id="to">
+                                        <option value="Bandung">Bandung</option>
+                                        <option value="Jakarta">Jakarta</option>
+                                        <option value="Medan">Medan</option>
+                                        <option value="Balikpapan">Balikpapan</option>
+                                    </datalist>
                                 </div>
-                            </div>
-                            <div class="form-submit">
-                                <button type="submit" class="awe-btn awe-btn-medium awe-search btn-submit">Search</button>
+                                <div class="form-field field-date">
+                                    <input type="text" class="field-input calendar-input depart" placeholder="Departing">
+                                </div>
+                                <div class="form-field field-date">
+                                    <input type="text" class="field-input calendar-input" placeholder="Returning">
+                                </div>
+                                <div class="form-field field-select field-adult">
+                                    <div class="select">
+                                        <span>Adults</span>
+                                        <select>
+                                            <option>Adults</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-field field-select field-children">
+                                    <div class="select">
+                                        <span>Children</span>
+                                        <select>
+                                            <option>Children</option>
+                                            <option>1</option>
+                                            <option>2</option>
+                                            <option>3</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-submit">
+                                    <button type="submit" class="awe-btn awe-btn-medium awe-search btn-submit">Search</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                     <!-- End Form Search -->
                 </div>
                 <!-- End Banner Content -->
@@ -822,9 +824,11 @@
     <!-- Scroll Change Color -->
     <script type="text/javascript">
     $(document).ready(function(){       
+        
            var scroll_start = 0;
            var startchange = $('.banner');
            var offset = startchange.offset();
+
         $(document).scroll(function() { 
             scroll_start = $(this).scrollTop();
             if(scroll_start > offset.top) {
@@ -857,10 +861,10 @@
             var rute_from = $("#flight-from");
             var rute_to   = $("#flight-to");
 
-        $(".btn-submit").click(function(){
-            window.location = "<?php echo site_url('home/search_flight/'); ?>" + rute_from.val() + "/" + rute_to.val();
+        // $(".btn-submit").click(function(){
+        //     window.location = "<?php echo site_url('home/search_flight/'); ?>" + rute_from.val() + "/" + rute_to.val();
 
-        })
+        // });
         
     });
 
