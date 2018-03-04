@@ -38,7 +38,7 @@ class Admin extends CI_Controller {
 	public function edit_form_user($id){
 		$where = array('id' => $id);
 		$data['model'] = $this->m_data;
-		$data['user'] = $this->m_data->tampil_data_id($where,'user')->result();
+		$data['user'] = $this->m_data->tampil_data_where($where,'user')->result();
 		$this->load->view('form_user',$data);
 	}
 
@@ -58,7 +58,7 @@ class Admin extends CI_Controller {
 
 	public function edit_form_transportation($id){
 		$where = array('id' => $id);
-		$data['transportation'] = $this->m_data->tampil_data_id($where,'transportation')->result();
+		$data['transportation'] = $this->m_data->tampil_data_where($where,'transportation')->result();
 		$this->load->view('form_transportation',$data);
 	}
 
@@ -79,7 +79,7 @@ class Admin extends CI_Controller {
 
 	public function edit_form_rute($id){
 		$where = array('id' => $id);
-		$data['rute'] = $this->m_data->tampil_data_id($where,'rute')->result();
+		$data['rute'] = $this->m_data->tampil_data_where($where,'rute')->result();
 		$this->load->view('form_rute',$data);
 	}
 
@@ -94,6 +94,49 @@ class Admin extends CI_Controller {
 
 
 	// !TODO ADD FUNCTION MESSAGE CUSTOMER
+
+/////////////// FUNCTION FOR RESERVATION  ///////////////////////////
+
+	public function table_reservation()
+	{
+
+		$select = 'reservation.id,reservation.reservation_code,reservation.status,customer.name,customer.phone,customer.address, customer.gender';
+		$table = 'reservation';
+		$table_join = 'customer';
+		$on = 'reservation.customer_id = customer.id';
+
+		$data['reservation'] = $this->m_data->tampil_data_join_all($select,$table,$table_join,$on)->result();	
+		$this->load->view('table_reservation',$data);
+	}
+
+	public function accept_payment($id){
+		$reservation_id = $id;
+		// $cek = array(
+		// 	'id' => $reservation_id,
+		// 	'status' => 1
+		// );
+
+		// $data_status = $this->m_data->tampil_data_where($cek,'reservation')->num_rows();
+		
+		// if ($data_status != 0) {
+
+			$where = array(
+				'id' => $reservation_id
+			);
+
+			$data = array(
+				'status' => 1
+			);
+
+
+			$this->m_data->update_data($where,$data,'reservation');
+			redirect('admin/table_reservation');
+
+		// } else {
+			// redirect('admin/table_reservation');
+		// }
+	}
+
 
 
 }

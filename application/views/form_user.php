@@ -64,6 +64,12 @@
                 <span class="menu-title">Dashboard</span>
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?php echo site_url('admin/table_reservation');?>">
+                <img src="<?php echo base_url('assets/admin/');?>images/icons/8.png" alt="">
+                <span class="menu-title">Reservation</span>
+              </a>
+            </li>
             <li class="nav-item active">
               <a class="nav-link" href="<?php echo site_url('admin/table_user');?>">
                 <img src="<?php echo base_url('assets/admin/');?>images/icons/5.png" alt="">

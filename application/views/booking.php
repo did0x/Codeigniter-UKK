@@ -4,9 +4,9 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Book Awesome Trip - Element</title>
+    <title>Book Awesome Trip - My Booking</title>
     <!-- Font Google -->
-    <link href='http://fonts.googleapis.com/css?family=Lato:300,400%7COpen+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700%7COpen+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
     <!-- End Font Google -->
     <!-- Library CSS -->
     <link rel="stylesheet" href="<?php echo base_url('assets/home/');?>css/library/font-awesome.min.css">
@@ -16,14 +16,6 @@
     <link rel="stylesheet" href="<?php echo base_url('assets/home/');?>css/library/jquery.mb.YTPlayer.min.css">
     <!-- End Library CSS -->
     <link rel="stylesheet" href="<?php echo base_url('assets/home/');?>css/style.css">
-    <style type="text/css">
-        .flight-list-head{
-            margin-top: 20px;
-        }
-        .my-profile ul li span{
-            left: 15px;
-        }
-    </style>
 </head>
 <body>
     <!-- Preloader -->
@@ -37,12 +29,13 @@
     </div>
     <!-- Wrap -->
     <div id="wrap"> 
+
         <!-- Header -->
         <header id="header" class="header">
             <div class="container">
                 <!-- Logo -->
                 <div class="logo float-left">
-                    <a href="<?php echo site_url('home') ?>" title=""><img src="<?php echo base_url('assets/home/');?>images/logo-header.png" alt=""></a>
+                    <a href="<?php echo site_url('home');?>" title=""><img src="<?php echo base_url('assets/home/');?>images/logo-header.png" alt=""></a>
                 </div>
                 <!-- End Logo -->
                 <!-- Bars -->
@@ -58,13 +51,13 @@
                                 <ul class="menu-list text-uppercase">
 
                                     <!-- Home -->
-                                    <li class="current-menu-parent">
-                                        <a href="<?php echo site_url('home') ?>" title="">Home</a>
+                                    <li>
+                                        <a href="<?php echo site_url('home');?>" title="">Home</a>
                                     </li>
 
                                     <!-- Flight -->
-                                    <li>
-                                        <a href="#">Booking</a>
+                                    <li class="current-menu-parent">
+                                        <a href="<?php echo site_url('booking');?>">Booking</a>
                                     </li>
 
                                     <!-- About -->
@@ -105,79 +98,59 @@
         <!-- Main -->
         <div class="main">
             <div class="container">
-                <div class="main-cn bg-white clearfix">
-                    <!--Breakcrumb-->
-                    <div class="step">
-                        <!-- Step -->
-                        <ul class="payment-step text-center clearfix">
-                            <li class="step-select">
-                                <span>1</span>
-                                <p>Choose Your Flight</p>
-                            </li>
-                            <li class="step-select">
-                                <span>2</span>
-                                <p>Your Booking &amp; Payment Details</p>
-                            </li>
-                            <li class="step-part">
-                                <span>3</span>
-                                <p>Booking Completed!</p>
-                            </li>
-                        </ul>
-                        <!-- End Step -->
-                    </div>
-                    <section class="element-sc">                                            
-                        <!--Alert Box - Caneldar-->
-                        <div class="element-cn my-profile">
+                <div class="main-cn element-page bg-white clearfix">
+                    <section class="user-profile">
+                    <h2 class="user-profile__title text-center">My Bookings</h2>
+                        <div class="form-search clearfix">
+                            <form action="<?php echo site_url('booking/search') ?>" method="post">
                             <div class="row">
-                                <!--Alert Box-->
-                                <div class="col-md-12">
-                                    <!--Alert Box Success-->
-                                    <div class="alert-box alert-success">
-                                        <h2 style="margin-top: 0">Congratulations ! </h2>
-                                        <h4 style="margin-top: 10px">You Reservation Code is : <b><?php echo $reservation_code ?></b> </h4>
-                                        <span>Your have successfully book a plane from <?php echo $rute[0]->rute_from ?> to <?php echo $rute[0]->rute_to ?> .We have sent you information to pay this booking, please check your email ! If you not pay this booking in <b>5 minuts</b>, we will cancel your booking.
-                                        </span>
-                                    </div>
-                                    <!--End Alert Box Success-->
+                                <div class="form-field col-md-6 col-md-offset-2" style="margin-top: 76px;margin-bottom: 36px">
+                                    <label for="code"><span>Reservation Code</span> BOOKAW----</label>
+                                    <input type="text" name="reservation_code" id="code" value="" class="field-input">
                                 </div>
-                                <!--End Alert Box-->
+                                <div class="form-submit col-md-2" style="margin-top: 76px;margin-bottom: 36px">
+                                    <button type="submit" class="awe-btn awe-btn-medium awe-search">Search</button>
+                                </div>
                             </div>
-                            <div class="row">
-                                    <div class="col-md-12 flight-list-head">
-                                        <h4 class="my-profile__title">Flight Information</h4> 
-                                    </div>
-                                    <div class="col-md-6">                                            
-                                        <ul>
-                                            <li><span>Airplane Name</span><b></b><?php echo $rute[0]->code ?> - <?php echo $rute[0]->description ?> </li>
-                                            <li><span>Flight from</span><?php echo $rute[0]->rute_from ?></li>
-                                            <li><span>Flight to</span><?php echo $rute[0]->rute_to ?></li>
-                                            <li><span>Depart at</span><?php echo $rute[0]->depart_at ?></li>
-                                            <li><span>Arrived at</span><?php echo $rute[0]->arrived ?></li>
-                                        </ul>   
-                                    </div>
-                                    <div class="col-md-12 flight-list-head">
-                                        <h4 class="my-profile__title">Passenger Information</h4> 
-                                    </div>
-                            </div>
-                            <?php foreach ($passenger as $p ) { ?>
-                            <div class="row passenger">
-                                <div class="col-md-6">                                            
-                                        <ul>
-                                            <li><span>Full Name</span><?php echo $p->name; ?></li>
-                                            <li><span>Seat</span> <?php echo $p->seat; ?></li>
-                                            
-                                        </ul>   
-                                    </div>
-                                    <div class="col-md-6">
-                                        <ul>
-                                            <li><span>Phone number</span><?php echo $p->phone; ?></li>
-                                            <li><span>Passport</span><?php echo $p->passport; ?></li>
-                                        </ul>   
-                                    </div>
-                            </div>
-                            <?php }  ?>
+                            </form>
                         </div>
-                        <!--End Alert Box - Caneldar-->
+                        <?php if ($reservation != null): ?>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="user-profile__my-booking table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Title</th>
+                                                <th>Name</th>
+                                                <th>Order Date</th>
+                                                <th>Execution Date</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tr>
+                                            <td>
+                                                <?php echo $reservation[0]['rute_from'] ?> ke <?php echo $reservation[0]['rute_to'] ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $reservation[0]['name'] ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $reservation[0]['reservation_at'] ?>
+                                            </td>
+                                            <td>
+                                                <?php echo $reservation[0]['reservation_date'] ?>
+                                            </td>
+                                            <td>
+                                                <b><?php echo $reservation[0]['status'] ?></b>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                            
+                        <?php endif ?>
                     </section>
                 </div>
             </div>
@@ -191,7 +164,7 @@
                     <!-- Logo -->
                     <div class="col-md-4">
                         <div class="logo-foter">
-                            <a href="index.html" title=""><img src="<?php echo base_url('assets/home/');?>images/logo-footer.png" alt=""></a>
+                            <a href="index.html" title=""><img src="images/logo-footer.png" alt=""></a>
                         </div>
                     </div>
                     <!-- End Logo -->

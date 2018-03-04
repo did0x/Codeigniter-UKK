@@ -143,8 +143,7 @@ class Crud extends CI_Controller {
 	}
 
 
-/////////////// FUNCTION FOR CUSTOMER  ///////////////////////////	
-
+/////////////// FUNCTION FOR Passenger  ///////////////////////////	
 
 
 }

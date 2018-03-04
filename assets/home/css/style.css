@@ -2424,16 +2424,16 @@ blockquote:before {
   width: 205px;
 }
 .form-flight .field-to {
-  width: 190px;
+  width: 205px;
 }
-.form-flight .field-date {
-  width: 150px;
+.form-flight .field-date{
+  width: 210px;
 }
 .form-flight .field-adult {
-  width: 115px;
+  width: 160px;
 }
 .form-flight .field-children {
-  width: 130px;
+  width: 160px;
 }
 .form-flight .form-submit {
   width: 170px;
@@ -8387,6 +8387,7 @@ blockquote:before {
   width: 100%;    
   background-color:#F5F5F5;
   border:1px solid #A4A4A4;
+  margin-top: 20px;
 
 }
 
@@ -8397,6 +8398,10 @@ blockquote:before {
 #place a {
   font-size:0.9em;
   color:white;
+}
+
+#place {
+  margin: 10px 10px 10px 30px; 
 }
 
 #place li {
@@ -8415,7 +8420,7 @@ blockquote:before {
   border-radius: 4px;
 }
 #place .selectedSeat { 
-  background-image:url("../images/icon-inbound.png");      
+  background-color: #4c4c4c;     
 }
 #place .selectingSeat { 
   background-color: #1c3241;        
@@ -8487,6 +8492,11 @@ blockquote:before {
 }
 .element-sc .element-cn .caneldar {
   margin-top: 15px;
+}
+
+.element-sc .element-cn .passenger {
+  padding-bottom: 20px;
+  background: url('../images/bg-border-v.png') repeat-x bottom left;
 }
 
 /* 21. 404 
@@ -8827,8 +8837,9 @@ blockquote:before {
 
 .my-profile .my-profile__title {
   font-size: 24px;
-  margin-bottom: 0;
+  margin-bottom: 15px;
   margin-top: 15px;
+  margin-left: 15px;
   color: #111111;
   font-family: 'Lato';
 }

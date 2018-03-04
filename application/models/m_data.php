@@ -7,13 +7,39 @@ class m_data extends CI_Model{
 	{	
 		return $this->db->get($table);
 	}
+	function tampil_data_group($table)
+	{	
+		$this->db->group_by('rute_from');
+		return $this->db->get($table);
+	}
+
+	function tampil_data_join($select,$where,$table,$table_join,$on)
+	{	
+		$this->db->select($select);
+		$this->db->from($table);
+		$this->db->join($table_join,$on);
+		$this->db->where($where);
+		return $this->db->get();;
+	}
+
+	function tampil_data_join_all($select,$table,$table_join,$on)
+	{	
+		$this->db->select($select);
+		$this->db->from($table);
+		$this->db->join($table_join,$on);		
+		return $this->db->get();;
+	}
 	
-	function tampil_data_id($where,$table){		
+	function tampil_data_where($where,$table){		
 		return $this->db->get_where($table,$where);
 	}
 
 	function input_data($data,$table){
 		$this->db->insert($table,$data);
+	}
+	function input_data_id($data,$table){
+		$this->db->insert($table,$data);
+		return $this->db->insert_id();
 	}
 
 	function hapus_data($where,$table){
@@ -30,6 +56,15 @@ class m_data extends CI_Model{
 		$this->db->select($select);
 		$this->db->from($table);
 		$this->db->join($table_join,$on);
+		$this->db->where($where);
+		return $this->db->get();
+	}
+
+	function search_data_double($select,$where,$table,$table_join,$on,$table_join_duo,$on_duo){
+		$this->db->select($select);
+		$this->db->from($table);
+		$this->db->join($table_join,$on);
+		$this->db->join($table_join_duo,$on_duo);
 		$this->db->where($where);
 		return $this->db->get();
 	}

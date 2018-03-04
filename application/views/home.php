@@ -35,7 +35,7 @@
             <div class="container">
                 <!-- Logo -->
                 <div class="logo float-left">
-                    <a href="<?php echo base_url();?>" title=""><img src="<?php echo base_url('assets/home/');?>images/logo-banner.png" alt=""></a>
+                    <a href="<?php echo site_url('booking');?>" title=""><img src="<?php echo base_url('assets/home/');?>images/logo-banner.png" alt=""></a>
                 </div>
                 <!-- End Logo -->
                 <!-- Bars -->
@@ -52,12 +52,12 @@
 
                                     <!-- Home -->
                                     <li class="current-menu-parent">
-                                        <a href="index.html" title="">Home</a>
+                                        <a href="<?php echo site_url('home');?>" title="">Home</a>
                                     </li>
 
                                     <!-- Flight -->
                                     <li>
-                                        <a href="flight-list.html">Booking</a>
+                                        <a href="<?php echo site_url('booking');?>">Booking</a>
                                     </li>
 
                                     <!-- About -->
@@ -106,7 +106,7 @@
                     </div>
                     <!-- End Category Singer -->
                     <!-- Form Search -->
-                    <form action="<?php echo base_url();?>index.php/home/search_flight" method="get">
+                    <form action="<?php echo site_url('home/search_flight')?>" method="get" autocomplete="off">
                         <div class="form-cn form-flight">
                             <h2>Where would you like to go?</h2>
                             <div class="form-search clearfix">
@@ -114,10 +114,9 @@
                                     <!-- <label for="flight-from"><span>Flight from:</span> City</label> -->
                                     <input type="text" list="from" name="flight-from" id="flight-from" class="field-input" placeholder="Flight from:">
                                     <datalist id="from">
-                                        <option value="Bandung">Bandung</option>
-                                        <option value="Jakarta">Jakarta</option>
-                                        <option value="Medan">Medan</option>
-                                        <option value="Balikpapan">Balikpapan</option>
+                                        <?php foreach ($rute as $r ) { ?>
+                                        <option value="<?php echo $r->rute_from ?>"><?php echo $r->rute_from ?></option>
+                                        <?php } ?>
                                     </datalist>
                                 </div>
                                 <div class="form-field field-to">
@@ -131,30 +130,29 @@
                                     </datalist>
                                 </div>
                                 <div class="form-field field-date">
-                                    <input type="text" class="field-input calendar-input depart" placeholder="Departing">
-                                </div>
-                                <div class="form-field field-date">
-                                    <input type="text" class="field-input calendar-input" placeholder="Returning">
+                                    <input type="text" class="field-input calendar-input depart" name="departing" id="departing" placeholder="Departing">
                                 </div>
                                 <div class="form-field field-select field-adult">
                                     <div class="select">
                                         <span>Adults</span>
-                                        <select>
+                                        <select id="adults" name="adults">
                                             <option>Adults</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-field field-select field-children">
                                     <div class="select">
                                         <span>Children</span>
-                                        <select>
+                                        <select id="children" name="children">
                                             <option>Children</option>
-                                            <option>1</option>
-                                            <option>2</option>
-                                            <option>3</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
                                         </select>
                                     </div>
                                 </div>
@@ -858,8 +856,8 @@
             }
         });
 
-            var rute_from = $("#flight-from");
-            var rute_to   = $("#flight-to");
+        //    var rute_from = $("#flight-from");
+        //  var rute_to   = $("#flight-to");
 
         // $(".btn-submit").click(function(){
         //     window.location = "<?php echo site_url('home/search_flight/'); ?>" + rute_from.val() + "/" + rute_to.val();

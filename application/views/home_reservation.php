@@ -121,74 +121,149 @@
 
                     <!-- Payment flight -->
                     <div class="payment-flight">
-                        <?php foreach ($flight as $f ) { ?>
                         <div class="row">
                             <div class="col-lg-6">
                                 <div class="payment-info">
-                                    <h1><?php echo $f->description; ?></h1>
+                                    <h1><?php echo $data['flight']->description; ?></h1>
                                     <ul>
                                         <li>
                                             <span>Depart:</span>
-                                            <?php echo $f->rute_from; ?>
+                                            <?php echo $data['flight']->rute_from; ?>
                                         </li> 
                                         <li>
                                             <span>Arrived to: </span>
-                                            <?php echo $f->rute_to; ?>
+                                            <?php echo $data['flight']->rute_to; ?>
                                         </li>
                                         <li>
                                             <span>Depart at: </span>
-                                            <?php echo date("H:i",strtotime($f->depart_at)); ?> WIB
+                                            <?php 
+                                            echo date("H:i",strtotime($data['flight']->depart_at))." WIB , "; 
+                                            echo $_POST['departing'];
+                                            ?> 
                                         </li>
                                         <li>
                                             <span>Arrived at:</span>
-                                            <?php echo date("H:i",strtotime($f->arrived)); ?> WIB
+                                            <?php 
+                                            echo date("H:i",strtotime($data['flight']->arrived))." WIB , "; 
+                                            echo $_POST['departing'];
+                                            ?> 
                                         </li>
                                         <li name="seat" style="display: none">
-                                            <?php echo $f->seat_qty;?>
+                                            <?php echo $data['flight']->seat_qty;?>
                                         </li>
                                     </ul>   
                                 </div>
                             </div>
+                            <div class="col-lg-6">
+                                <div class="payment-price">
+
+                                    <figure>
+                                        <img src="images/hotel/img-9.jpg" alt="">
+                                    </figure>
+                                    <div class="total-trip">
+                                        <span>
+                                            1 Flight x <?php echo $_POST['passenger'] ?> Passenger<br>
+                                            <?php echo "Rp " . number_format($data['flight']->price,0,'','.'); ?>
+                                            <small> / Passenger</small>
+                                        </span>
+                                       
+                                        <p>
+                                            Trip Total : 
+                                            <ins><?php echo "Rp " . number_format($data['total_price'],0,'','.') ?></ins>
+
+                                            <i>Flight tax 7% not included, Service charge 10% not included
+                                            </i>
+                                        </p>
+                                    </div>
+                                </div>   
+                            </div>
                         </div>
-                        <?php } ?>
                     </div>
                     <!-- Payment Flight -->
-                    <form action="<?php echo site_url('home/confirm') ?>" method="post">
+                    
+                    
+                    
+                    <form action="<?php echo site_url('home/booking') ?>" method="post">
                     <div class="payment-form payment-offline">
-                        <h2>Your Information</h2>
+                        <h2>Passengers Information</h2>
+                        <!-- -->
+                        <input type="hidden" name="passenger" value="<?php echo $_POST['passenger']; ?>">
+                        <input type="hidden" name="departing" value="<?php echo $_POST['departing']; ?>">
+                        <input type="hidden" name="rute_id" value="<?php echo $_POST['rute']; ?>">
+
+                        <?php for ($i=0; $i < $_POST['passenger'] ; $i++) { ?>
+                        <div class="row form">
+                            <div class="col-md-3">
+                                <div class="form-field">
+                                    <input type="text" placeholder="First Name*" name="firstname_passenger[]" class="field-input">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-field">
+                                    <input type="text" placeholder="Last Name" name="lastname_passenger[]" class="field-input">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-field">
+                                    <input type="text" placeholder="Phone number*" name="phone_passenger[]" class="field-input">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-field">
+                                    <input type="text" placeholder="Country of Passport*" name="passport_passenger[]" class="field-input">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-field">
+                                    <?php 
+                                    //Dumping
+                                    $seat[]  = [
+                                        '0' => "B1",
+                                        '1' => "C2",
+                                        '2' => "A2",
+                                        ];
+
+                                    ?>
+                                    <input type="hidden" placeholder="Seat" name="seat[]" value="<?php echo $seat[0][$i];?>" class="field-input">
+                                </div>
+                            </div>
+                        </div>
+                        <?php } ?>
+                        
+
+                        <h2>Data Customer</h2>
                         <div class="row form">
                             <div class="col-md-6">
                                 <div class="form-field">
-                                    <input type="text" placeholder="First Name*" class="field-input">
+                                    <input type="text" placeholder="First Name*" name="firstname" class="field-input">
                                 </div>
                                 <div class="form-field">
-                                    <input type="text" placeholder="Last Name" class="field-input">
+                                    <input type="text" placeholder="Last Name" name="lastname" class="field-input">
                                 </div>
                                 <div class="form-field">
-                                    <input type="text" placeholder="Email*" class="field-input">
+                                    <input type="text" placeholder="Email*" name="email" class="field-input">
                                 </div>
                                 <div class="form-field">
-                                    <input type="text" placeholder="Email (confirm)" class="field-input">
+                                    <input type="text" placeholder="Email (confirm)" name="email_confirm" class="field-input">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-field">
-                                    <input type="text" placeholder="Phone number*" class="field-input">
+                                    <input type="text" placeholder="Gender*" name="gender" class="field-input">
                                 </div>
                                 <div class="form-field">
-                                    <input type="text" placeholder="City*" class="field-input">
+                                    <input type="text" placeholder="Phone number*" name="phone" class="field-input">
                                 </div>
                                 <div class="form-field">
-                                    <input type="text" placeholder="Country of Passport*" class="field-input">
+                                    <input type="text" placeholder="City*" name="city" class="field-input">
                                 </div>
-                                <div class="radio-checkbox">
-                                    <input type="checkbox" class="checkbox" id="accept">
-                                    <label for="accept">I am not staying at the hotel. I am making this booking for someone else.</label>
+                                <div class="form-field">
+                                    <input type="text" placeholder="Address*" name="address" class="field-input">
                                 </div>
                             </div>
                         </div>
 
-                         <div id="holder">
+                        <div id="holder">
                             <ul id="place">
                                 
                             </ul>
@@ -199,7 +274,7 @@
                                 By selecting to complete this booking I acknowledge that I have read and accept the <span>rules &amp; restrictions terms &amp; conditions</span> , and <span>privacy policy</span>.
                             </p>
 
-                            <button type="submit" class="awe-btn awe-btn-1 awe-btn-lager">Submit</button>
+                            <button type="submit" class="awe-btn awe-btn-1 awe-btn-lager btn-submit">Submit</button>
 
                         </div>
 
@@ -353,23 +428,25 @@
                             className += ' ' + settings.selectedSeatCss;
                         }
 
+                        var witdh, height, margin;
                         if (settings.rows < 6) {
-                        str.push('<li class="' + className + '"' +
-                                 'style="top:' + (i * settings.seatHeight).toString() + 'px;' + 
-                                 'left:' + (j * settings.seatWidth).toString() + 'px;' + 
-                                 'margin:' + (settings.rows - 1)+'px '+ (settings.rows - 1) + 'px;' +
-                                 'width:' + settings.rows * 7.5 +'px;' + 'height:' + settings.rows * 7.5 +'px;">' +
-                                 '<a title="' + seatNo + '">' + seatNo + '</a>' +
-                                 '</li>');
+                            width = settings.rows * 7.5;
+                            height = settings.rows * 7.5;
+                            margin = (settings.rows - 1);
+
                         } else {
+                            width = settings.rows * 7.2;
+                            height = settings.rows * 7.2;
+                            margin = (settings.rows - 2);
+                        }
+
                         str.push('<li class="' + className + '"' +
                                  'style="top:' + (i * settings.seatHeight).toString() + 'px;' + 
                                  'left:' + (j * settings.seatWidth).toString() + 'px;' + 
-                                 'margin:' + (settings.rows - 2)+'px '+ (settings.rows - 2) + 'px;' +
-                                 'width:' + settings.rows * 7.2 +'px;' + 'height:' + settings.rows * 7.2 +'px;">' +
+                                 'margin:' + margin +'px '+ margin + 'px;' +
+                                 'width:' + width +'px;' + 'height:' + height +'px;">' +
                                  '<a title="' + seatNo + '">' + seatNo + '</a>' +
                                  '</li>');
-                        }
                     }
                 }
                 
@@ -385,29 +462,63 @@
 
 
             $('.' + settings.seatCss).click(function () {
-            if ($(this).hasClass(settings.selectedSeatCss)){
-                alert('This seat is already reserved');
-            }
-            else{
-                $(this).toggleClass(settings.selectingSeatCss);
+
+                var passengers = <?php Print($_POST['passenger']); ?>;
+
+                if ($(this).hasClass(settings.selectedSeatCss)){
+                    alert('This seat is already reserved');
+                }
+                else{
+                    // if () {}
+                    $(this).toggleClass(settings.selectingSeatCss);
+
+                    var str = [], item;
+                    $.each($('#place li.' + settings.selectingSeatCss + ' a'), function (index, value) {
+                        item = $(this).attr('title');                   
+                        str.push(item);
+                        
+                    });
+
+                    var count = str.filter(function() { return true; }).length;
+
+                    if (count > passengers) {
+                        alert("You only booked seat for " + passengers + "person")
+                        $(this).toggleClass(settings.selectingSeatCss);
+                    }
+
                 }
             });
 
-            $('#btnShow').click(function () {
-                var str = [];
-                $.each($('#place li.' + settings.selectedSeatCss + ' a, #place li.'+ settings.selectingSeatCss + ' a'), function (index, value) {
-                    str.push($(this).attr('title'));
-                });
-                alert(str.join(','));
-            })
-
-            $('#btnShowNew').click(function () {
-                var str = [], item;
+            $('.btn-submit').click(function(){
+                var seat = [], item;
+                var passengers = <?php Print($_POST['passenger']); ?>;
                 $.each($('#place li.' + settings.selectingSeatCss + ' a'), function (index, value) {
                     item = $(this).attr('title');                   
-                    str.push(item);                   
+                    seat.push(item);                   
                 });
-                alert(str.join(','));
+
+                var count = seat.filter(function() { return true; }).length;
+                for (k = 0 ; k < count; k++) {
+                    $('input[name^="seat"]').eq(k).val(seat[k]);
+                }
+
+                // console.log($('input[name^="seat"]').eq(1)).val();
+
+
+                // $.ajax ({
+                //     type: 'POST',
+                //     url : '<?php echo site_url('home/seat'); ?>',
+                //     data: data,
+                //     success : function(data) {
+                //         alert(data);
+                //     },
+                //     error : function(xhr, status, error) {
+                //         alert("Oopss something wrong");
+                //     }
+   
+                // });
+                   
+
             })
         });
     

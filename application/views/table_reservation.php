@@ -64,13 +64,13 @@
                 <span class="menu-title">Dashboard</span>
               </a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item active">
               <a class="nav-link" href="<?php echo site_url('admin/table_reservation');?>">
                 <img src="<?php echo base_url('assets/admin/');?>images/icons/8.png" alt="">
                 <span class="menu-title">Reservation</span>
               </a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="<?php echo site_url('admin/table_user');?>">
                 <img src="<?php echo base_url('assets/admin/');?>images/icons/5.png" alt="">
                 <span class="menu-title">User</span>
@@ -105,50 +105,44 @@
 
         <!-- partial -->
         <div class="content-wrapper">
-          <h3 class="page-heading mb-4">Tables User</h3>
+          <h3 class="page-heading mb-4">Tables Customer</h3>
           <div class="row mb-2">
             <div class="col-lg-12">
               <div class="card">
                 <div class="card-body">
                   <div class="card-title mb-4">
-                    <h5>Tambah Data 
-                      <button type="button" class="btn btn-primary btn-sm" onclick="location.href='<?php echo base_url(); ?>index.php/admin/form_user'">
-                        Add
-                      </button> 
-                    </h5>
+                    
                   </div>
                   <div class="table-responsive">
                     <table class="table center-aligned-table">
                       <thead>
                         <tr class="text-primary">
                           <th>No</th>
-                          <th>Fullname</th>
-                          <th>Username</th>
-                          <th>Password</th>
-                          <th>Level</th>
+                          <th>Reservation Code</th>
+                          <th>Name</th>
+                          <th>Alamat</th>
+                          <th>No. Telp.</th>
+                          <th>Jenis Kelamin</th>
                           <th></th>
-                          <th></th> 
                         </tr>
                       </thead>
                       <tbody>
                         <?php 
                           $no = 1;
-                          foreach($user as $u) {  
+                          foreach($reservation as $r) {  
                         ?>
                         <tr class="">
                           <td><?php echo $no++ ?></td> 
-                          <td><?php echo $u->fullname ?></td>
-                          <td><?php echo $u->username ?></td>
-                          <td><?php echo $u->password ?></td>
-                          <td><?php echo $u->level ?></td>
+                          <td><?php echo $r->reservation_code ?></td>
+                          <td><?php echo $r->name ?></td>
+                          <td><?php echo $r->address ?></td>
+                          <td><?php echo $r->phone ?></td>
+                          <td><?php echo $r->gender ?></td>
                           <td>
-                            <button type="button" name="edit" class="btn btn-primary btn-sm" onclick="location.href='<?php echo base_url(); ?>index.php/admin/edit_form_user/<?php echo $u->id;?>'">
-                                Manage
-                            </button>
-                          </td>
-                          <td>
-                            <button type="button" class="btn btn-danger btn-sm" onclick="location.href='<?php echo base_url(); ?>index.php/crud/delete_user/<?php echo $u->id;?>'">
-                              Remove
+                            <button type="button" class="btn <?php echo ( $r->status == 0 ) ? 'btn-danger' :  'btn-primary' ?> btn-sm" >
+                              <!-- !TODO: Add function messsage customer -->
+                              <?php ( $r->status == 0 ) ? $message = "Accept" :  $message = "Successfull" ?>
+                              <?php echo anchor('admin/accept_payment/'.$r->id , $message);?>
                             </button>
                           </td>
                         </tr>

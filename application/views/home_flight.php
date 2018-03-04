@@ -153,16 +153,18 @@
                                 <div class="flight-list-head">
                                     <span class="icon"><img src="<?php echo base_url('assets/home/');?>images/icon-outbound.png" alt=""></span>    
                                     
-                                    <h3><?php echo $depart['rute_from']; ?> - <?php echo $depart['rute_to']; ?></h3>
+                                    <h3><?php echo $_GET['flight-from']; ?> - <?php echo $_GET['flight-to']; ?></h3>
 
-                                    <p><span><?php echo count($flight); ?></span> trips</p>
+                                    <p><span><?php echo count($data); ?></span> trips</p>
                                 </div>
                                 <!-- Flight List Head -->
 
                                 <!-- Flight List Table -->
                                 <div class="flight-list-cn">
                                     <div class="scroll-table">
-                                    <form action="<?php echo base_url();?>index.php/home/reservation" method="get">
+                                    <form action="<?php echo base_url();?>index.php/home/reservation" method="post">
+                                        <input type="hidden" name="passenger" id="passenger" value="<?= $_GET['adults']?>">
+                                        <input type="hidden" name="departing" id="departing" value="<?= $_GET['departing']?>">
                                         <table class="table flight-table table-radio">
                                             <thead>
                                                 <tr>
@@ -176,25 +178,25 @@
                                             </thead>
                                             <tbody>
                                                 <?php 
-                                                    foreach ($flight as $f ) {
+                                                    foreach ($data as $d ) {
                                                 ?>
                                                 <tr class="flight">
                                                     <td class="td-airline">
                                                         <img src="images/flight/icon/icon-3.png" alt="">
-                                                        <?php echo $f->description; ?>
+                                                        <?php echo $d['description']; ?>
                                                     </td>
                                                     <td class="td-time">
-                                                        <p><?php echo date("H:i",strtotime($f->depart_at)); ?></p>
+                                                        <p><?php echo date("H:i",strtotime($d['depart_at'])); ?></p>
                                                     </td>
                                                     <td class="td-time">
-                                                        <p><?php echo date("H:i",strtotime($f->arrived)); ?></p>
+                                                        <p><?php echo date("H:i",strtotime($d['arrived'])); ?></p>
                                                     </td>
                                                     <td class="td-stop text-center">
                                                         <div class="stop-cn">
                                                             <label>
                                                             <?php 
-                                                                $departTime = strtotime($f->depart_at);
-                                                                $arrivedTime = strtotime($f->arrived);
+                                                                $departTime = strtotime($d['depart_at']);
+                                                                $arrivedTime = strtotime($d['arrived']);
                                                                 $totalTime = ($arrivedTime - $departTime)/60;
 
                                                                 $hours = intval($totalTime/60);
@@ -213,13 +215,13 @@
                                                         <span>
                                                             <ins>
                                                                 <?php 
-                                                                echo "Rp " . number_format($f->price,2,',','.');
+                                                                echo "Rp " . number_format($d['price'],2,',','.');
                                                                 ?>
                                                             </ins>
                                                         </span>
                                                     </td>
                                                     <td>
-                                                        <button type="submit" name="rute" value="<?php echo $f->id;?>" class="awe-btn awe-btn-1 awe-btn-small">
+                                                        <button type="submit" name="rute" value="<?php echo $d['id'];?>" class="awe-btn awe-btn-1 awe-btn-small">
                                                             Book
                                                         </button>
                                                     </td>
